@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/landscape-hub/src",
   "projectType": "application",
-  "tags": [],
+  "tags": ["scope:landscape-hub", "type:app"],
   "// targets": "to see all targets run: nx show project landscape-hub --web",
   "targets": {}
 }

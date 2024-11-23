@@ -1,0 +1,9 @@
+{
+  "name": "routing",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/landscape-hub/routing/src",
+  "projectType": "library",
+  "tags": ["scope:landscape-hub", "type:routing-ui"],
+  "// targets": "to see all targets run: nx show project routing --web",
+  "targets": {}
+}

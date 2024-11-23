@@ -18,11 +18,29 @@ module.exports = [
           depConstraints: [
             {
               sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: ['type:ui', 'type:feature', 'type:utils', 'type:data'],
+              onlyDependOnLibsWithTags: [
+                'type:ui',
+                'type:routing-ui',
+                'type:feature',
+                'type:utils',
+                'type:data',
+              ],
             },
             {
               sourceTag: 'type:ui',
               onlyDependOnLibsWithTags: [
+                'type:ui',
+                'type:utils',
+                'type:models',
+                'scope:shared',
+              ],
+            },
+            {
+              sourceTag: 'type:routing-ui',
+              onlyDependOnLibsWithTags: [
+                'type:ui',
+                'type:layout',
+                'type:feature',
                 'type:utils',
                 'type:models',
                 'scope:shared',

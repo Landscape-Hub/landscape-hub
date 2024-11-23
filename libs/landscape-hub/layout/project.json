@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/landscape-hub/layout/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:landscape-hub", "type:layout"],
   "// targets": "to see all targets run: nx show project layout --web",
   "targets": {}
 }
