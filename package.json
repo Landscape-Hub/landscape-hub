@@ -2,7 +2,9 @@
   "name": "@landscape/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "openapi-ts": "openapi-ts"
+  },
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
