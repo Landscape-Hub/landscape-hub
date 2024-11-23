@@ -1,0 +1,9 @@
+{
+  "name": "api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/landscape-hub/api/src",
+  "projectType": "library",
+  "tags": ["scope:landscape-hub", "type:data-access"],
+  "// targets": "to see all targets run: nx show project api --web",
+  "targets": {}
+}

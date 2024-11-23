@@ -1,0 +1,9 @@
+{
+  "name": "dashboard-utility",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/landscape-hub/dashboard/shared/dashboard-utility/src",
+  "projectType": "library",
+  "tags": ["scope:landscape-hub-dashboard", "type:utils"],
+  "// targets": "to see all targets run: nx show project dashboard-utility --web",
+  "targets": {}
+}
