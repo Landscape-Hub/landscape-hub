@@ -1,6 +1,5 @@
 import { Outlet } from 'react-router-dom';
 import { AppSidebar } from './app-sidebar';
-
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink,
   BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
@@ -10,8 +9,6 @@ import {
   SidebarTrigger
 } from '@landscape/shadcn';
 
-
-
 /**
  * A layout component for the main application structure that includes a sidebar, header, and content section.
  * The sidebar is provided by `SidebarProvider`, and contains elements like `AppSidebar` and `SidebarTrigger`.
@@ -20,7 +17,7 @@ import {
  *
  * @return {JSX.Element} The layout structure of the application.
  */
-export function AppLayout() {
+export function AppLayout(): JSX.Element {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -38,27 +35,18 @@ export function AppLayout() {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Fetching Data</BreadcrumbPage>
+                  <BreadcrumbPage className="text-black">Fetching Data</BreadcrumbPage>
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          {/*<div className="grid auto-rows-min gap-4 md:grid-cols-3">*/}
-          {/*  <div className="aspect-video rounded-xl bg-muted/50" />*/}
-          {/*  <div className="aspect-video rounded-xl bg-muted/50" />*/}
-          {/*  <div className="aspect-video rounded-xl bg-muted/50" />*/}
-          {/*</div>*/}
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-gray-300 md:min-h-min" >
-            {/*bg-muted/50*/}
+          <div className="min-h-[100vh] flex-1 rounded-xl md:min-h-min bg-gray-100 text-black">
             <Outlet />
           </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }
-
-
-

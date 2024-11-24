@@ -1,6 +1,6 @@
 import { RouteObject } from 'react-router-dom';
 import { AppLayout } from '@landscape/layout';
-import { DashboardUi } from '@landscape/dashboard-ui';
+import { DashboardLayout } from '@landscape/dashboard-ui';
 import { FeatureOverview } from '@landscape/feature-overview';
 
 export const routes: RouteObject[] = [
@@ -10,7 +10,7 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: 'dashboard',
-        element: <DashboardUi />,
+        element: <DashboardLayout />,
         children: [
           { index: true, element: <FeatureOverview /> },
           { path: 'analytics', element: <div>analytics</div> },
