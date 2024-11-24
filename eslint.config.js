@@ -55,7 +55,13 @@ module.exports = [
                 'scope:shared',
               ],
             },
-
+            {
+              sourceTag: 'type:layout',
+              onlyDependOnLibsWithTags: [
+                'type:ui',
+                'scope:shared',
+              ],
+            },
             {
               sourceTag: 'type:data',
               onlyDependOnLibsWithTags: ['type:models', 'scope:shared'],

@@ -7,7 +7,7 @@ import {
   useSidebar
 } from '@landscape/shadcn';
 import { ChevronsUpDown, Plus } from 'lucide-react';
-import { useState } from 'react';
+import { ElementType, useState } from 'react';
 
 /**
  * AppTeamSwitcher component allows users to switch between different teams.
@@ -22,16 +22,16 @@ import { useState } from 'react';
  * @return {JSX.Element} The rendered component.
  */
 export function AppTeamSwitcher({
-                               teams,
-                             }: {
+  teams,
+}: {
   teams: {
-    name: string
-    logo: React.ElementType
-    plan: string
-  }[]
-}) {
-  const { isMobile } = useSidebar()
-  const [activeTeam, setActiveTeam] = useState(teams[0])
+    name: string;
+    logo: ElementType;
+    plan: string;
+  }[];
+}): JSX.Element {
+  const { isMobile } = useSidebar();
+  const [activeTeam, setActiveTeam] = useState(teams[0]);
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -56,7 +56,7 @@ export function AppTeamSwitcher({
           <DropdownMenuContent
             className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
             align="start"
-            side={isMobile ? "bottom" : "right"}
+            side={isMobile ? 'bottom' : 'right'}
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
@@ -86,5 +86,5 @@ export function AppTeamSwitcher({
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }
