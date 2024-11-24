@@ -9,6 +9,18 @@ import {
 import { ChevronsUpDown, Plus } from 'lucide-react';
 import { useState } from 'react';
 
+/**
+ * AppTeamSwitcher component allows users to switch between different teams.
+ * It displays the teams in a dropdown menu, allowing the user to select one of the available teams.
+ *
+ * @param {Object} props - The props object for the component.
+ * @param {Object[]} props.teams - An array of team objects to be displayed in the switcher.
+ * @param {string} props.teams.name - The name of the team.
+ * @param {React.ElementType} props.teams.logo - The logo component for the team.
+ * @param {string} props.teams.plan - The subscription plan of the team.
+ *
+ * @return {JSX.Element} The rendered component.
+ */
 export function AppTeamSwitcher({
                                teams,
                              }: {

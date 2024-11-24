@@ -23,6 +23,16 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+/**
+ * Renders a sidebar navigation component for the user with a dropdown menu.
+ *
+ * @param {Object} params - The parameters for the function.
+ * @param {Object} params.user - The user information.
+ * @param {string} params.user.name - The name of the user.
+ * @param {string} params.user.email - The email of the user.
+ * @param {string} params.user.avatar - The URL of the user's avatar image.
+ * @return {JSX.Element} A sidebar menu with navigation and user-specific options.
+ */
 export function AppNavUser({
   user,
 }: {

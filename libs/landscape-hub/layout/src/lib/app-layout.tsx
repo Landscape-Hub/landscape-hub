@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { AppSidebar } from './app-sidebar';
-import { AppHeader } from './app-header';
+
 import {
   Breadcrumb, BreadcrumbItem, BreadcrumbLink,
   BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator,
@@ -12,6 +12,14 @@ import {
 
 
 
+/**
+ * A layout component for the main application structure that includes a sidebar, header, and content section.
+ * The sidebar is provided by `SidebarProvider`, and contains elements like `AppSidebar` and `SidebarTrigger`.
+ * The header contains navigation elements including breadcrumbs for user guidance.
+ * The main content area includes placeholders for additional content and uses an `Outlet` component for rendering nested routes.
+ *
+ * @return {JSX.Element} The layout structure of the application.
+ */
 export function AppLayout() {
   return (
     <SidebarProvider>
@@ -42,7 +50,8 @@ export function AppLayout() {
           {/*  <div className="aspect-video rounded-xl bg-muted/50" />*/}
           {/*  <div className="aspect-video rounded-xl bg-muted/50" />*/}
           {/*</div>*/}
-          <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" >
+          <div className="min-h-[100vh] flex-1 rounded-xl bg-gray-300 md:min-h-min" >
+            {/*bg-muted/50*/}
             <Outlet />
           </div>
         </div>
@@ -51,20 +60,5 @@ export function AppLayout() {
   )
 }
 
-export function AppLayoutV1() {
-  return (
-    <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
-      <AppSidebar />
-      <div className="flex flex-col flex-1 overflow-hidden">
-        <AppHeader />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 dark:bg-gray-900">
-          <div className="container mx-auto px-6 py-8">
-            <Outlet />
-          </div>
-        </main>
-      </div>
-    </div>
-  );
-}
 
 
