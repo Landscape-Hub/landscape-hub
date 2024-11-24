@@ -2,7 +2,7 @@
 export function FeatureOverview() {
   return (
 
-      <h1>Welcome to FeatureOverview!</h1>
+      <h1>Welcome to Feature Dashboard Overview!</h1>
 
   );
 }
