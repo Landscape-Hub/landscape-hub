@@ -30,7 +30,10 @@
       ],
       "@landscape/layout": ["libs/landscape-hub/layout/src/index.ts"],
       "@landscape/routing": ["libs/landscape-hub/routing/src/index.ts"],
-      "@landscape/shadcn": ["libs/shared/shadcn/src/index.ts"]
+      "@landscape/shadcn": ["libs/shared/shadcn/src/index.ts"],
+      "@landscape/user-management-ui": [
+        "libs/landscape-hub/user-management/shared/user-management-ui/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

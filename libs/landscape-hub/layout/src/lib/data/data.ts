@@ -65,12 +65,12 @@ const data = {
     },
     {
       title: 'User Management',
-      url: '#',
+      url: '/user-management',
       icon: Users, // User Management icon
       items: [
         {
           title: 'View Users',
-          url: '#',
+          url: '/user-management',
           icon: Users,
         },
         {

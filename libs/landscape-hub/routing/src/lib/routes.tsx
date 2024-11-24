@@ -2,6 +2,7 @@ import { RouteObject } from 'react-router-dom';
 import { AppLayout } from '@landscape/layout';
 import { DashboardLayout } from '@landscape/dashboard-ui';
 import { FeatureOverview } from '@landscape/feature-overview';
+import { UserManagementUi } from '@landscape/user-management-ui';
 
 export const routes: RouteObject[] = [
   {
@@ -20,6 +21,10 @@ export const routes: RouteObject[] = [
           { path: 'notifications', element: <div>notifications</div> },
         ],
       },
+      {
+        path: 'user-management',
+        element: <UserManagementUi />
+      }
     ],
   },
 ];
