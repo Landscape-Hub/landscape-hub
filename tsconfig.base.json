@@ -15,7 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@landscape/agent-management-ui": [
+        "libs/landscape-hub/agent-management/shared/agent-management-ui/src/index.ts"
+      ],
       "@landscape/api": ["libs/landscape-hub/api/src/index.ts"],
+      "@landscape/client-management-ui": [
+        "libs/landscape-hub/client-management/shared/client-management-ui/src/index.ts"
+      ],
       "@landscape/dashboard-models": [
         "libs/landscape-hub/dashboard/shared/dashboard-models/src/index.ts"
       ],
