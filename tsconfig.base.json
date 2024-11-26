@@ -28,6 +28,9 @@
       "@landscape/feature-overview": [
         "libs/landscape-hub/dashboard/features/feature-overview/src/index.ts"
       ],
+      "@landscape/landsacpe-services-ui": [
+        "libs/landscape-hub/landscape-services/shared/landsacpe-services-ui/src/index.ts"
+      ],
       "@landscape/layout": ["libs/landscape-hub/layout/src/index.ts"],
       "@landscape/routing": ["libs/landscape-hub/routing/src/index.ts"],
       "@landscape/shadcn": ["libs/shared/shadcn/src/index.ts"],
