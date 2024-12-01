@@ -1,0 +1,11 @@
+{
+  "name": "generated-landscape-api-types",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:noop",
+      "outputs": ["{projectRoot}"]
+    }
+  },
+  "implicitDependencies": ["landscape-api-swagger"]
+}

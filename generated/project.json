@@ -1,0 +1,19 @@
+{
+  "name": "landscape-api-types",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "generated/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/generated",
+        "main": "generated/src/index.ts",
+        "tsConfig": "generated/tsconfig.lib.json",
+        "assets": ["generated/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
