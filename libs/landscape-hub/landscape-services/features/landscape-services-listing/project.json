@@ -1,0 +1,9 @@
+{
+  "name": "landscape-services-listing",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/landscape-hub/landscape-services/features/landscape-services-listing/src",
+  "projectType": "library",
+  "tags": ["scope:landscape-hub", "type:feature"],
+  "// targets": "to see all targets run: nx show project landscape-services-listing --web",
+  "targets": {}
+}

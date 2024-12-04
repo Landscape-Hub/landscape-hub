@@ -101,7 +101,7 @@ const data = {
       icon: Wrench,
       items: [
         {
-          title: 'View Services',
+          title: 'Services Listing',
           url: '/services',
           icon: Leaf,
         },

@@ -35,6 +35,9 @@
         "libs/landscape-hub/dashboard/features/feature-overview/src/index.ts"
       ],
       "@landscape/landscape-api-types": ["generated/src/index.ts"],
+      "@landscape/landscape-services-listing": [
+        "libs/landscape-hub/landscape-services/features/landscape-services-listing/src/index.ts"
+      ],
       "@landscape/landscape-services-ui": [
         "libs/landscape-hub/landscape-services/shared/landscape-services-ui/src/index.ts"
       ],

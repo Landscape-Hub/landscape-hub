@@ -4,6 +4,7 @@ import { DashboardLayout } from '@landscape/dashboard-ui';
 import { FeatureOverview } from '@landscape/feature-overview';
 import { UserManagementUi } from '@landscape/user-management-ui';
 import { LandscapeServicesUi } from '@landscape/landscape-services-ui';
+import { LandscapeServicesListing } from '@landscape/landscape-services-listing';
 
 export const routes: RouteObject[] = [
   {
@@ -30,7 +31,7 @@ export const routes: RouteObject[] = [
         path: 'services',
         element: <LandscapeServicesUi />,
         children: [
-          { index: true, element: <FeatureOverview /> },
+          { index: true, element: <LandscapeServicesListing /> },
         ]
 
       }
