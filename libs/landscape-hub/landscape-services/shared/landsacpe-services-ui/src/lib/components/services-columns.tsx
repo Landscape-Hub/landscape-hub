@@ -5,7 +5,10 @@ import { ServicesDataTableColumnHeader } from "./services-data-table-column-head
 import { ServicesDataTableRowActions } from "./services-data-table-row-actions"
 import { Checkbox } from '@landscape/shadcn';
 
-export const servicesColumns: ColumnDef<Service>[] = [
+export const servicesColumns= (
+  // onEdit: (id: string) => void
+  onEdit: (service: Service) => void
+): ColumnDef<Service>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -114,6 +117,6 @@ export const servicesColumns: ColumnDef<Service>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <ServicesDataTableRowActions row={row} />,
+    cell: ({ row }) => <ServicesDataTableRowActions row={row} onEdit={onEdit}/>,
   },
 ]

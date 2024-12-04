@@ -2,24 +2,29 @@ import { Row } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 
 import { labels } from "../data/services-data"
-import { serviceSchema } from "../data/service-schema"
+import { Service, serviceSchema } from '../data/service-schema';
 import {
   Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem, DropdownMenuRadioGroup, DropdownMenuRadioItem,
   DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger,
-  DropdownMenuTrigger
+  DropdownMenuTrigger,
+  DrawerTrigger
 } from '@landscape/shadcn';
 
+
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData>;
+  // onEdit: (id: string) => void;
+  onEdit: (service: Service) => void
 }
 
 export function ServicesDataTableRowActions<TData>({
                                              row,
+                                             onEdit,
                                            }: DataTableRowActionsProps<TData>) {
-  const task = serviceSchema.parse(row.original)
+  const service = serviceSchema.parse(row.original)
 
   return (
     <DropdownMenu>
@@ -33,14 +38,16 @@ export function ServicesDataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DrawerTrigger asChild>
+        <DropdownMenuItem onSelect={() => onEdit(service)}>Edit</DropdownMenuItem>
+        </DrawerTrigger>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSub>
           <DropdownMenuSubTrigger>Labels</DropdownMenuSubTrigger>
           <DropdownMenuSubContent>
-            <DropdownMenuRadioGroup value={task.label}>
+            <DropdownMenuRadioGroup value={service.label}>
               {labels.map((label) => (
                 <DropdownMenuRadioItem key={label.value} value={label.value}>
                   {label.label}

@@ -1,1 +1,1 @@
-export * from './lib/landsacpe-services-ui';
+export * from './lib/landscape-services-ui';
