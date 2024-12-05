@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import LandscapeServicesUi from './landscape-services-ui';
+import LandscapeServicesLayout from './landscape-services-layout';
 
 describe('LandscapeServicesUi', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<LandscapeServicesUi />);
+    const { baseElement } = render(<LandscapeServicesLayout />);
     expect(baseElement).toBeTruthy();
   });
 });

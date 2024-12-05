@@ -1,9 +1,9 @@
+import { ServiceListingDataTable } from './components/service-listing-data-table';
+import { columns } from './components/services-listing-columns';
+
 export function LandscapeServicesListing() {
-  return (
-
-      <h1>Welcome to LandscapeServicesListing!</h1>
-
-  );
+  return null;
+  // <ServiceListingDataTable columns={columns} data={} />;
 }
 
 export default LandscapeServicesListing;
