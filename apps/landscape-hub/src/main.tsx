@@ -11,9 +11,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const queryClient = new QueryClient();
 
 client.setConfig({
-  baseURL: 'https://localhost:7275'
+  baseURL: 'https://localhost:7275',
 });
-
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -21,13 +20,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
-
     <ThemeProvider defaultTheme="system" storageKey="ui-theme">
       <QueryClientProvider client={queryClient}>
-      <Router>
-        <App />
-      </Router>
-
+        <Router>
+          <App />
+        </Router>
       </QueryClientProvider>
     </ThemeProvider>
   </StrictMode>
