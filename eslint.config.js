@@ -53,6 +53,7 @@ module.exports = [
                 'type:data',
                 'type:models',
                 'scope:shared',
+                'type:data-access',
               ],
             },
             {

@@ -58,6 +58,17 @@ export const columns: ColumnDef<Service>[] = [
     enableSorting: false,
     enableHiding: false,
   },
+
+  {
+    accessorKey: 'categoryName',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Category Name" />
+    ),
+    cell: ({ row }) => <div>{row.getValue('categoryName')}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+
   {
     id: 'actions',
     cell: ({ row }) => <DataTableRowActions row={row} />,
