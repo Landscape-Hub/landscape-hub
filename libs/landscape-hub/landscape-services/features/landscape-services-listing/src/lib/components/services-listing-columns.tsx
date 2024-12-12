@@ -70,6 +70,67 @@ export const columns: ColumnDef<Service>[] = [
   },
 
   {
+    accessorKey: 'basePrice',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Base Price" />
+    ),
+    cell: ({ row }) => {
+
+      const formattedAmount = new Intl.NumberFormat('en-GB', {
+        style: 'currency',
+        currency: 'GBP',
+      }).format(row.getValue('basePrice'));
+
+      return(
+
+      <div>{formattedAmount}</div>
+          )
+    },
+    enableSorting: false,
+    enableHiding: false,
+  },
+
+  {
+    accessorKey: 'costEstimate',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Cost Estimate" />
+    ),
+    cell: ({ row }) => {
+
+      const formattedAmount = new Intl.NumberFormat('en-GB', {
+        style: 'currency',
+        currency: 'GBP',
+      }).format(row.getValue('costEstimate'));
+
+      return (
+      <div>{formattedAmount}</div>
+      )
+    },
+    enableSorting: false,
+    enableHiding: false,
+  },
+
+  {
+    accessorKey: 'profitMarginTarget',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Profit Margin Target" />
+    ),
+    cell: ({ row }) => <div>{row.getValue('profitMarginTarget')}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+
+  {
+    accessorKey: 'pricingModel',
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Pricing Model" />
+    ),
+    cell: ({ row }) => <div>{row.getValue('pricingModel')}</div>,
+    enableSorting: false,
+    enableHiding: false,
+  },
+
+  {
     id: 'actions',
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
