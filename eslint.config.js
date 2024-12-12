@@ -1,4 +1,5 @@
 const nx = require('@nx/eslint-plugin');
+const eslintPluginImport = require('eslint-plugin-import'); // Include eslint-plugin-import
 
 module.exports = [
   ...nx.configs['flat/base'],
@@ -8,6 +9,9 @@ module.exports = [
     ignores: ['**/dist'],
   },
   {
+    plugins: {
+      import: eslintPluginImport, // Load the 'import' plugin as an object
+    },
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     rules: {
       '@nx/enforce-module-boundaries': [
@@ -78,11 +82,43 @@ module.exports = [
           ],
         },
       ],
+      // Add import order rules
+      "import/order": [
+        "error",
+        {
+          "groups": [
+            "builtin",         // Node.js built-in modules (e.g., 'fs', 'path')
+            "external",        // Third-party NPM modules
+            "internal",        // Internal libraries (Nx libraries)
+            "parent",          // Imports from parent folders (e.g., '../')
+            "sibling",         // Imports from sibling files (e.g., './')
+            "index"            // Index imports (e.g., './index')
+          ],
+          "pathGroups": [
+            {
+              "pattern": "react**", // Match React and React-related imports
+              "group": "builtin",
+              "position": "before"
+            },
+            {
+              "pattern": "@landscape/**", // Match your scoped Nx libraries (update this scope as needed)
+              "group": "internal",
+              "position": "before"
+            }
+          ],
+          "pathGroupsExcludedImportTypes": ["builtin"], // Exclude built-in imports from path group ordering
+          "newlines-between": "always",                // Enforce a newline between groups
+          "alphabetize": {
+            "order": "asc",                             // Alphabetize imports  within each group
+            "caseInsensitive": true                    // Ignore case when alphabetizing
+          }
+        }
+      ]
     },
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
-    // Override or add rules here
+    // Additional overrides or customizations
     rules: {},
   },
 ];
