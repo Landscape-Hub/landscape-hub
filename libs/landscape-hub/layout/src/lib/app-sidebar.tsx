@@ -1,9 +1,17 @@
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from '@landscape/shadcn';
-import { AppNavMain } from './app-nav-main';
-import { AppNavUser } from './app-nav-user';
 import { ComponentProps } from 'react';
-import { AppTeamSwitcher } from './app-team-switcher';
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from '@landscape/shadcn';
+
+import { AppNavMain } from './app-nav-main';
 import { AppNavProjects } from './app-nav-projects';
+import { AppNavUser } from './app-nav-user';
+import { AppTeamSwitcher } from './app-team-switcher';
 import { data } from './data/data';
 
 
