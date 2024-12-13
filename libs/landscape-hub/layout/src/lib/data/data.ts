@@ -1,18 +1,40 @@
 import {
   Activity,
   BarChart2,
-  Bell, BookOpen, Briefcase,
+  Bell,
+  BookOpen,
+  Briefcase,
   Calendar,
-  CheckSquare, Clipboard, CreditCard, Droplets, Flower,
-  Gauge, Hammer, Info, Layers, Layout,
-  Leaf, LeafIcon, List, Maximize,
-  MessageCircle, Package, PlayCircle, Scissors, Settings, ShieldCheck, Sliders, Star, UserCheck,
+  CheckSquare,
+  Clipboard,
+  CreditCard,
+  Droplets,
+  Flower,
+  Gauge,
+  Hammer,
+  Info,
+  Layers,
+  Layout,
+  Leaf,
+  LeafIcon,
+  List,
+  Maximize,
+  MessageCircle,
+  Package,
+  PlayCircle,
+  Scissors,
+  Settings,
+  ShieldCheck,
+  Sliders,
+  Star,
+  UserCheck,
   UserPlus,
-  Users, UserX, Wrench
+  Users,
+  UserX,
+  Wrench,
 } from 'lucide-react';
 
-export
-const data = {
+export const data = {
   user: {
     name: 'Oscar',
     email: 'contact@oscarlagatta.com',
@@ -244,4 +266,3 @@ const data = {
     },
   ],
 };
-

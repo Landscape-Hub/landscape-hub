@@ -264,7 +264,7 @@ export type ServiceAlignmentTypeForUpdateDto = {
 };
 
 export type ServiceDto = {
-  id?: number;
+  id: number;
   serviceName?: string | null;
   description?: string | null;
 };

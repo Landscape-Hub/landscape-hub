@@ -58,10 +58,7 @@ module.exports = [
             },
             {
               sourceTag: 'type:layout',
-              onlyDependOnLibsWithTags: [
-                'type:ui',
-                'scope:shared',
-              ],
+              onlyDependOnLibsWithTags: ['type:ui', 'scope:shared'],
             },
             {
               sourceTag: 'type:data',

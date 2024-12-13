@@ -1,10 +1,17 @@
-import { ColumnDef } from "@tanstack/react-table"
-import { Service } from "../data/schema"
-import { DataTableColumnHeader } from "./service-listing-table-column-header";
-import { DataTableRowActions } from "./service-listing-table-row-actions";
+import { ColumnDef } from '@tanstack/react-table';
+import { Service } from '../data/schema';
+import { DataTableColumnHeader } from './service-listing-table-column-header';
+import { DataTableRowActions } from './service-listing-table-row-actions';
 import { Badge, Checkbox } from '@landscape/shadcn';
 
-export const columns: ColumnDef<Service>[] = [
+// const onDelete = (id: number) => {
+//   alert(id);
+//   return null;
+// };
+
+export const columns = (
+  onDelete: (id: number) => void
+): ColumnDef<Service>[] => [
   {
     id: 'select',
     header: ({ table }) => (
@@ -75,16 +82,12 @@ export const columns: ColumnDef<Service>[] = [
       <DataTableColumnHeader column={column} title="Base Price" />
     ),
     cell: ({ row }) => {
-
       const formattedAmount = new Intl.NumberFormat('en-GB', {
         style: 'currency',
         currency: 'GBP',
       }).format(row.getValue('basePrice'));
 
-      return(
-
-      <div>{formattedAmount}</div>
-          )
+      return <div>{formattedAmount}</div>;
     },
     enableSorting: false,
     enableHiding: false,
@@ -96,15 +99,12 @@ export const columns: ColumnDef<Service>[] = [
       <DataTableColumnHeader column={column} title="Cost Estimate" />
     ),
     cell: ({ row }) => {
-
       const formattedAmount = new Intl.NumberFormat('en-GB', {
         style: 'currency',
         currency: 'GBP',
       }).format(row.getValue('costEstimate'));
 
-      return (
-      <div>{formattedAmount}</div>
-      )
+      return <div>{formattedAmount}</div>;
     },
     enableSorting: false,
     enableHiding: false,
@@ -132,6 +132,6 @@ export const columns: ColumnDef<Service>[] = [
 
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} />,
+    cell: ({ row }) => <DataTableRowActions row={row} onDelete={onDelete} />,
   },
 ];

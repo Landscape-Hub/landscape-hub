@@ -9,14 +9,18 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@landscape/shadcn';
+import { serviceSchema } from '../data/schema';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
+  onDelete: (id: number) => void;
 }
 
 export function DataTableRowActions<TData>({
   row,
+  onDelete,
 }: DataTableRowActionsProps<TData>) {
+  const service = serviceSchema.parse(row.original);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -34,7 +38,7 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onDelete(service.id)}>
           Delete
           <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
         </DropdownMenuItem>

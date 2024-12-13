@@ -25,16 +25,13 @@ export const routes: RouteObject[] = [
       },
       {
         path: 'user-management',
-        element: <UserManagementUi />
+        element: <UserManagementUi />,
       },
       {
         path: 'services',
         element: <LandscapeServicesLayout />,
-        children: [
-          { index: true, element: <LandscapeServicesListing /> },
-        ]
-
-      }
+        children: [{ index: true, element: <LandscapeServicesListing /> }],
+      },
     ],
   },
 ];
