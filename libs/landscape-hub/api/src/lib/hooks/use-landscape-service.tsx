@@ -10,7 +10,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { ServiceDto } from '@landscape/api';
 
 export function useLandscapeService() {
-  // return useQuery(getServicesOptions());
+   // return useQuery(getServicesOptions());
 
   const queryClient = useQueryClient();
 

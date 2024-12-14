@@ -11,6 +11,9 @@ import {
 } from '@landscape/shadcn';
 import { serviceSchema } from '../data/schema';
 
+import ServiceListingAlertDialog from './service-listing-alert-dialog'
+import React from 'react';
+
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
   onDelete: (id: number) => void;
@@ -21,6 +24,9 @@ export function DataTableRowActions<TData>({
   onDelete,
 }: DataTableRowActionsProps<TData>) {
   const service = serviceSchema.parse(row.original);
+
+  const [open, setOpen] = React.useState(false)
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,10 +44,17 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSeparator />
-        <DropdownMenuItem onSelect={() => onDelete(service.id)}>
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
+        <ServiceListingAlertDialog onDelete={onDelete} serviceId={service.id} open={open} setOpen={setOpen} >
+            <DropdownMenuItem onSelect={
+              (event) => {
+                event.preventDefault();
+                setOpen(true)
+              }
+            }>
+              Delete
+              <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+            </DropdownMenuItem>
+        </ServiceListingAlertDialog>
       </DropdownMenuContent>
     </DropdownMenu>
   );
