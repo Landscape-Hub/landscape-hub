@@ -33,6 +33,7 @@ module.exports = [
                 'type:utils',
                 'type:models',
                 'scope:shared',
+                'type:feature',
               ],
             },
             {
