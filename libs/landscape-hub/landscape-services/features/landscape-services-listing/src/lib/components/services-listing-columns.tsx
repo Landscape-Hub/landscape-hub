@@ -2,12 +2,7 @@ import { ColumnDef } from '@tanstack/react-table';
 import { Service } from '../data/schema';
 import { DataTableColumnHeader } from './service-listing-table-column-header';
 import { DataTableRowActions } from './service-listing-table-row-actions';
-import { Badge, Checkbox } from '@landscape/shadcn';
-
-// const onDelete = (id: number) => {
-//   alert(id);
-//   return null;
-// };
+import { Checkbox } from '@landscape/shadcn';
 
 export const columns = (
   onDelete: (id: number) => void

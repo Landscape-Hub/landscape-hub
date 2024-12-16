@@ -11,7 +11,7 @@ import {
 } from '@landscape/shadcn';
 import { serviceSchema } from '../data/schema';
 
-import ServiceListingAlertDialog from './service-listing-alert-dialog'
+import {ServiceListingAlertDialog} from '@landscape/landscape-services-ui';
 import React from 'react';
 
 interface DataTableRowActionsProps<TData> {
@@ -25,7 +25,7 @@ export function DataTableRowActions<TData>({
 }: DataTableRowActionsProps<TData>) {
   const service = serviceSchema.parse(row.original);
 
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   return (
     <DropdownMenu>
@@ -44,16 +44,25 @@ export function DataTableRowActions<TData>({
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSeparator />
-        <ServiceListingAlertDialog onDelete={onDelete} serviceId={service.id} open={open} setOpen={setOpen} >
-            <DropdownMenuItem onSelect={
-              (event) => {
-                event.preventDefault();
-                setOpen(true)
-              }
-            }>
-              Delete
-              <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-            </DropdownMenuItem>
+        <ServiceListingAlertDialog
+          onAction={onDelete}
+          service={service}
+          open={open}
+          setOpen={setOpen}
+          dialogTitle={'Are you absolutely sure you want to delete Service- '}
+          dialogDesc={" This action cannot be undone. This will permanently delete the\n" +
+            "            service and remove its data from our servers."}
+          buttonText={'Delete'}
+        >
+          <DropdownMenuItem
+            onSelect={(event) => {
+              event.preventDefault();
+              setOpen(true);
+            }}
+          >
+            Delete
+            <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
+          </DropdownMenuItem>
         </ServiceListingAlertDialog>
       </DropdownMenuContent>
     </DropdownMenu>

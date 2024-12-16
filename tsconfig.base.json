@@ -46,6 +46,9 @@
       "@landscape/shadcn": ["libs/shared/shadcn/src/index.ts"],
       "@landscape/user-management-ui": [
         "libs/landscape-hub/user-management/shared/user-management-ui/src/index.ts"
+      ],
+      "@landscape/schema": [
+        "libs/landscape-hub/landscape-services/features/landscape-services-listing/src/lib/data/schema.ts"
       ]
     }
   },

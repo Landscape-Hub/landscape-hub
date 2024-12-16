@@ -2,19 +2,21 @@ import {
   deleteServicesByIdMutation,
   getServiceQueryKey,
   getServicesOptions,
-  postServicesMutation,
-  postServicesQueryKey,
-  putServicesByIdMutation,
 } from '../api/@tanstack/react-query.gen';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { ServiceDto } from '@landscape/api';
+import { ServiceDto } from '../api/types.gen';
+import { useState, useCallback } from 'react';
 
 export function useLandscapeService() {
-   // return useQuery(getServicesOptions());
 
   const queryClient = useQueryClient();
 
   const services = useQuery(getServicesOptions());
+
+  const [selectedService, setSelectedService] = useState<ServiceDto | null>(null);
+  const handleSelectService = useCallback((service: ServiceDto) => {
+    setSelectedService(service);
+  }, []);
 
   const deleteService = useMutation(deleteServicesByIdMutation());
 
@@ -36,16 +38,18 @@ export function useLandscapeService() {
         queryKey: serviceQueryKey,
       });
     } catch (error) {
-      console.error('Failed to create Service ', error);
+      console.error('Failed to delete Service ', error);
     }
   };
 
   return {
     serviceList: (services.data as ServiceDto[]) ?? [],
     isLoading: services.isLoading,
-    isError: services.isError,
+    aervivcesIsError: services.isError,
     error: services.error,
     refetch: services.refetch,
     handleDeleteService,
+    selectedService,
+    handleSelectService
   };
 }
