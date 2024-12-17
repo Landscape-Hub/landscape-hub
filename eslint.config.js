@@ -31,6 +31,7 @@ module.exports = [
               onlyDependOnLibsWithTags: [
                 'type:ui',
                 'type:utils',
+                'type:data-access',
                 'type:models',
                 'scope:shared',
                 'type:feature',

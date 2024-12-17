@@ -1,8 +1,6 @@
 import { postServicesMutation } from '@landscape/api';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 export function useCreateService() {
-  const createServiceMutation = useMutation(postServicesMutation());
-
-  return createServiceMutation;
+  return useMutation(postServicesMutation());
 }
