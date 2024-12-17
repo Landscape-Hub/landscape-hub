@@ -45,7 +45,7 @@ export function useLandscapeService() {
   return {
     serviceList: (services.data as ServiceDto[]) ?? [],
     isLoading: services.isLoading,
-    aervivcesIsError: services.isError,
+    servivcesIsError: services.isError,
     error: services.error,
     refetch: services.refetch,
     handleDeleteService,

@@ -5,7 +5,7 @@ import { DataTableRowActions } from './service-listing-table-row-actions';
 import { Checkbox } from '@landscape/shadcn';
 
 export const columns = (
-  onDelete: (id: number) => void
+  onDelete: (service: Service) => void
 ): ColumnDef<Service>[] => [
   {
     id: 'select',

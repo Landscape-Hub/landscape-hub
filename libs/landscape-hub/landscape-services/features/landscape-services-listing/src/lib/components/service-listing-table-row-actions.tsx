@@ -9,14 +9,14 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@landscape/shadcn';
-import { serviceSchema } from '../data/schema';
+import { Service, serviceSchema } from '../data/schema';
 
 import {ServiceListingAlertDialog} from '@landscape/landscape-services-ui';
 import React from 'react';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
-  onDelete: (id: number) => void;
+  onDelete: (service: Service) => void;
 }
 
 export function DataTableRowActions<TData>({

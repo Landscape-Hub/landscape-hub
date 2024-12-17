@@ -13,7 +13,7 @@ import {
 import { Service } from '@landscape/schema';
 
 interface AlertDialogDemoProps {
-  onAction: (id: number) => void;
+  onAction: (service: Service) => void;
   service: Service;
   open: boolean;
   setOpen: (open: boolean) => void;
@@ -34,7 +34,7 @@ export function ServiceListingAlertDialog({
   children,
 }: AlertDialogDemoProps) {
   const handleAction = () => {
-    onAction(service.id);
+    onAction(service);
     setOpen(false);
   };
 

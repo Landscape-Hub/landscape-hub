@@ -38,18 +38,21 @@
       "@landscape/landscape-services-listing": [
         "libs/landscape-hub/landscape-services/features/landscape-services-listing/src/index.ts"
       ],
+      "@landscape/landscape-services-presenters": [
+        "libs/landscape-hub/landscape-services/presenters/landscape-services-presenters/src/index.ts"
+      ],
       "@landscape/landscape-services-ui": [
         "libs/landscape-hub/landscape-services/shared/landscape-services-ui/src/index.ts"
       ],
       "@landscape/layout": ["libs/landscape-hub/layout/src/index.ts"],
       "@landscape/routing": ["libs/landscape-hub/routing/src/index.ts"],
+      "@landscape/schema": [
+        "libs/landscape-hub/landscape-services/features/landscape-services-listing/src/lib/data/schema.ts"
+      ],
       "@landscape/shadcn": ["libs/shared/shadcn/src/index.ts"],
       "@landscape/user-management-ui": [
         "libs/landscape-hub/user-management/shared/user-management-ui/src/index.ts"
       ],
-      "@landscape/schema": [
-        "libs/landscape-hub/landscape-services/features/landscape-services-listing/src/lib/data/schema.ts"
-      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
