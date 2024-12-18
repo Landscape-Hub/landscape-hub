@@ -4,6 +4,7 @@ import { useCreateService } from './use-create-service';
 import { useUpdateService } from './use-update-service';
 import { useDeleteService } from './use-delete-service';
 import { ServiceDto } from '@landscape/api';
+import {toast } from "react-toastify";
 
 export const useServicePresenter = () => {
   const {
@@ -38,8 +39,10 @@ export const useServicePresenter = () => {
           body: newService,
         });
         setSuccessMsg(`Service ${newService.serviceName} successfully created`);
+        toast.success(successMsg);
       } catch (err) {
         setError(`failed to create service: ${err}`);
+        toast.error(error);
       }
     },
     [createServiceMutation]
@@ -56,8 +59,10 @@ export const useServicePresenter = () => {
           },
         });
         setSuccessMsg(`Service ${service.serviceName} successfully created`);
+        toast.success(successMsg);
       } catch (err) {
         setError(`failed to update service ${service.serviceName}: ${err}`);
+        toast.error(error);
       }
     },
     [updateServiceMutation]
@@ -65,6 +70,7 @@ export const useServicePresenter = () => {
 
   const handleDeleteService = useCallback(
     async (service: ServiceDto) => {
+      setSuccessMsg(null);
       setError(null);
       try {
         await deleteServiceMutation.mutateAsync({
@@ -74,8 +80,10 @@ export const useServicePresenter = () => {
         });
         await refetch();
         setSuccessMsg(`Service ${service.serviceName} successfully deleted`);
+        toast.success(successMsg);
       } catch (err) {
-        setError(`failed to delete ${service.serviceName}: ${err}`);
+        setError(`Failed to delete ${service.serviceName}: ${err}`);
+        toast.error(error);
       }
     },
     [deleteServiceMutation, refetch]
