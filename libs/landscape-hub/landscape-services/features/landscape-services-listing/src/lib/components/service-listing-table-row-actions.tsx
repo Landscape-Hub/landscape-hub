@@ -1,13 +1,13 @@
 import { Row } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import {
-  Button,
+  Button, DrawerTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger
 } from '@landscape/shadcn';
 import { Service, serviceSchema } from '../data/schema';
 
@@ -17,11 +17,13 @@ import React from 'react';
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
   onDelete: (service: Service) => void;
+  onEdit: (service: Service) => void;
 }
 
 export function DataTableRowActions<TData>({
   row,
   onDelete,
+                                             onEdit,
 }: DataTableRowActionsProps<TData>) {
   const service = serviceSchema.parse(row.original);
 
@@ -39,7 +41,10 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        {/*<DropdownMenuItem>Edit</DropdownMenuItem>*/}
+        <DrawerTrigger asChild>
+          <DropdownMenuItem onSelect={() => onEdit(service)}>Edit</DropdownMenuItem>
+        </DrawerTrigger>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
