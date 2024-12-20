@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { serviceSchema } from '../data/schema'; // Adjust the import path
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,6 +19,7 @@ import {
   SelectValue,
   Textarea,
 } from '@landscape/shadcn';
+import { useServicePresenter } from '@landscape/landscape-services-presenters';
 
 type Service = z.infer<typeof serviceSchema>;
 
@@ -32,17 +32,23 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
 }: ServiceFormProps) => {
   const form = useForm<z.infer<typeof serviceSchema>>({
     resolver: zodResolver(serviceSchema),
-    defaultValues: {},
+    defaultValues: service || {},
   });
+
+  const { handleUpdateService } = useServicePresenter();
 
   // onSubmit handler
   function onSubmit(values: z.infer<typeof serviceSchema>) {
     console.log(values);
+    handleUpdateService(values);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 bg-gray-200">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 bg-gray-200"
+      >
         {/*Service Name */}
         <FormField
           name="serviceName"
@@ -55,7 +61,6 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   type="text"
                   placeholder="Enter Service Name"
                   {...field}
-                  value={(field.value = service?.serviceName || '')}
                 />
               </FormControl>
               <FormMessage />
@@ -75,7 +80,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   id="description"
                   placeholder="Service description"
                   {...field}
-                  value={(field.value = service?.description || '')}
+                  value={field.value || ''}
                 />
               </FormControl>
               <FormMessage />
@@ -86,13 +91,13 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
         {/*/!* Category Name (Updated to use Select dropdown) *!/*/}
         <FormField
           control={form.control}
-          name="categoryName"
+          name="categoryId"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="categoryName">Category Name</FormLabel>
+              <FormLabel htmlFor="categoryId">Category Name</FormLabel>
               <Select
-                onValueChange={field.onChange}
-                defaultValue={service?.categoryName ?? 'Plumbing Category'}
+                onValueChange={(value) => field.onChange(Number(value))}
+                defaultValue={service?.categoryId?.toString() ?? '1'}
               >
                 <FormControl>
                   <SelectTrigger>
@@ -100,17 +105,15 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="Plumbing Category">Plumbing Category</SelectItem>
-                  <SelectItem value="Landscape Design Category">
-                    Landscape Design Category
-                  </SelectItem>
-                  <SelectItem value="Painting Category">Painting Category</SelectItem>
-                  <SelectItem value="Roofing Category">Roofing Category</SelectItem>
-                  <SelectItem value="Flooring Category">Flooring Category</SelectItem>
-                  <SelectItem value="Electrical Category">Electrical Category</SelectItem>
-                  <SelectItem value="Pest Category">Pest Category</SelectItem>
-                  <SelectItem value="Building Category">Building Category</SelectItem>
-                  <SelectItem value="Cleaning Category">Cleaning Category</SelectItem>
+                  <SelectItem value="1">Plumbing Category</SelectItem>
+                  <SelectItem value="2">Landscape Design Category</SelectItem>
+                  <SelectItem value="3">Painting Category</SelectItem>
+                  <SelectItem value="4">Roofing Category</SelectItem>
+                  <SelectItem value="5">Flooring Category</SelectItem>
+                  <SelectItem value="6">Electrical Category</SelectItem>
+                  <SelectItem value="7">Pest Category</SelectItem>
+                  <SelectItem value="8">Building Category</SelectItem>
+                  <SelectItem value="9">Cleaning Category</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -124,14 +127,18 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
           name="basePrice"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="basePrice">Base Price</FormLabel>
+              <FormLabel htmlFor="basePrice">Base Price (£)</FormLabel>
               <FormControl>
                 <Input
                   id="basePrice"
                   type="number"
-                  placeholder="Enter Service Name"
+                  placeholder="Enter Base Price"
                   {...field}
-                  value={(field.value = service?.basePrice)}
+                  onChange={(e) =>
+                    field.onChange(
+                      e.target.value ? Number(e.target.value) : undefined
+                    )
+                  }
                 />
               </FormControl>
               <FormMessage />
@@ -145,17 +152,21 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
           name="costEstimate"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="costEstimate">Cost Estimate</FormLabel>
+              <FormLabel htmlFor="costEstimate">Cost Estimate (£)</FormLabel>
               <FormControl>
                 <Input
                   id="costEstimate"
                   type="number"
                   placeholder="Enter Cost Estimate"
                   {...field}
-                  value={(field.value = service?.costEstimate)}
+                  onChange={(e) =>
+                    field.onChange(
+                      e.target.value ? Number(e.target.value) : undefined
+                    )
+                  }
                 />
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -166,17 +177,23 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
           name="profitMarginTarget"
           render={({ field }) => (
             <FormItem>
-              <FormLabel htmlFor="profitMarginTarget">Profit Margin Target</FormLabel>
+              <FormLabel htmlFor="profitMarginTarget">
+                Profit Margin Target %
+              </FormLabel>
               <FormControl>
                 <Input
                   id="profitMarginTarget"
                   type="number"
                   placeholder="Enter Profit Margin Target"
                   {...field}
-                  value={(field.value = service?.profitMarginTarget)}
+                  onChange={(e) =>
+                    field.onChange(
+                      e.target.value ? Number(e.target.value) : undefined
+                    )
+                  } // <-- Convert string to number here
                 />
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -205,7 +222,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   </SelectContent>
                 </Select>
               </FormControl>
-              <FormMessage/>
+              <FormMessage />
             </FormItem>
           )}
         />

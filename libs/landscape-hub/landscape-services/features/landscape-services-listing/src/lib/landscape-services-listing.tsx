@@ -8,9 +8,13 @@ import { ServiceListingFormDrawerLayout } from './components/service-listing-for
 import ServiceListingForm from './components/service-listing-form';
 
 export function LandscapeServicesListing() {
-
-  const { handleDeleteService, isLoading, services, handleSelectService, selectedService } =
-    useServicePresenter();
+  const {
+    handleDeleteService,
+    isLoading,
+    services,
+    handleSelectService,
+    selectedService,
+  } = useServicePresenter();
 
   const onDelete = async (service: ServiceDto) => {
     await handleDeleteService(service);
@@ -18,7 +22,7 @@ export function LandscapeServicesListing() {
 
   const onEdit = (service: ServiceDto) => {
     handleSelectService(service);
-    console.log("listing-test- " + selectedService?.serviceName);
+    console.log('listing-test- ' + selectedService?.serviceName);
   };
 
   const columnsArr = columns(onDelete, onEdit);
@@ -30,24 +34,24 @@ export function LandscapeServicesListing() {
   }
 
   return (
-    <Drawer open={openDrawer}
-            onOpenChange={setOpenDrawer}
-            direction="right"
-            shouldScaleBackground={false}
-            snapPoints={[1, 2, 3]}
-            fadeFromIndex={1}
+    <Drawer
+      open={openDrawer}
+      onOpenChange={setOpenDrawer}
+      direction="right"
+      shouldScaleBackground={false}
+      snapPoints={[1, 2, 3]}
+      fadeFromIndex={1}
     >
-    <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
-      <ServiceListingDataTable
-        columns={columnsArr}
-        data={services as ServiceDto[]}
-      />
+      <div className="hidden h-full flex-1 flex-col space-y-8 p-8 md:flex">
+        <ServiceListingDataTable
+          columns={columnsArr}
+          data={services as ServiceDto[]}
+        />
 
-      <ServiceListingFormDrawerLayout service={selectedService}>
-        <ServiceListingForm service={selectedService}/>
-      </ServiceListingFormDrawerLayout>
-
-    </div>
+        <ServiceListingFormDrawerLayout service={selectedService}>
+          <ServiceListingForm service={selectedService} />
+        </ServiceListingFormDrawerLayout>
+      </div>
     </Drawer>
   );
 }

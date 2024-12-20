@@ -4,6 +4,7 @@ export const serviceSchema = z.object({
   id: z.number(),
   serviceName: z.string().nullable().optional(),
   description: z.string().nullable().optional(),
+  categoryId: z.number().nullable().optional(),
   categoryName: z.string().nullable().optional(),
   basePrice: z.number().optional(),
   costEstimate: z.number().optional(),

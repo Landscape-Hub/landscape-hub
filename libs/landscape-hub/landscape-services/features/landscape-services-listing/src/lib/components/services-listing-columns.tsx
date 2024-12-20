@@ -1,13 +1,13 @@
 import { ColumnDef } from '@tanstack/react-table';
-import { Service } from '../data/schema';
 import { DataTableColumnHeader } from './service-listing-table-column-header';
 import { DataTableRowActions } from './service-listing-table-row-actions';
 import { Checkbox } from '@landscape/shadcn';
+import { ServiceDto } from '@landscape/api';
 
 export const columns = (
-  onDelete: (service: Service) => void,
-  onEdit: (service: Service) => void
-): ColumnDef<Service>[] => [
+  onDelete: (service: ServiceDto) => void,
+  onEdit: (service: ServiceDto) => void
+): ColumnDef<ServiceDto>[] => [
   {
     id: 'select',
     header: ({ table }) => (
@@ -128,6 +128,8 @@ export const columns = (
 
   {
     id: 'actions',
-    cell: ({ row }) => <DataTableRowActions row={row} onDelete={onDelete} onEdit={onEdit}/>,
+    cell: ({ row }) => (
+      <DataTableRowActions row={row} onDelete={onDelete} onEdit={onEdit} />
+    ),
   },
 ];

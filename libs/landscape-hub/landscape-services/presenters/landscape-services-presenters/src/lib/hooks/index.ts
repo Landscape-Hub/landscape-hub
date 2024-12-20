@@ -4,7 +4,7 @@ import { useCreateService } from './use-create-service';
 import { useUpdateService } from './use-update-service';
 import { useDeleteService } from './use-delete-service';
 import { ServiceDto } from '@landscape/api';
-import {toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 export const useServicePresenter = () => {
   const {
@@ -13,7 +13,9 @@ export const useServicePresenter = () => {
     refetch,
     error: fetchError,
   } = useGetServices();
-  const [selectedService, setSelectedService] = useState<ServiceDto | null>(null);
+  const [selectedService, setSelectedService] = useState<ServiceDto | null>(
+    null
+  );
   const [error, setError] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
 
@@ -55,13 +57,17 @@ export const useServicePresenter = () => {
         await updateServiceMutation.mutateAsync({
           body: service,
           path: {
-            id: service.id,
+            id: service?.id,
           },
         });
-        setSuccessMsg(`Service ${service.serviceName} successfully created`);
-        toast.success(successMsg);
+        const success = (await refetch()).isSuccess;
+
+        if (success) {
+          setSuccessMsg(`Service ${service?.serviceName} successfully updated`);
+          toast.success(successMsg);
+        }
       } catch (err) {
-        setError(`failed to update service ${service.serviceName}: ${err}`);
+        setError(`failed to update service ${service?.serviceName}: ${err}`);
         toast.error(error);
       }
     },
@@ -75,14 +81,14 @@ export const useServicePresenter = () => {
       try {
         await deleteServiceMutation.mutateAsync({
           path: {
-            id: service.id,
+            id: service?.id,
           },
         });
         await refetch();
-        setSuccessMsg(`Service ${service.serviceName} successfully deleted`);
+        setSuccessMsg(`Service ${service?.serviceName} successfully deleted`);
         toast.success(successMsg);
       } catch (err) {
-        setError(`Failed to delete ${service.serviceName}: ${err}`);
+        setError(`Failed to delete ${service?.serviceName}: ${err}`);
         toast.error(error);
       }
     },
