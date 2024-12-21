@@ -20,7 +20,8 @@ import {
   Textarea,
 } from '@landscape/shadcn';
 import { useServicePresenter } from '@landscape/landscape-services-presenters';
-
+import { toast } from 'sonner';
+import { CheckCircle2 } from 'lucide-react';
 type Service = z.infer<typeof serviceSchema>;
 
 interface ServiceFormProps {
@@ -30,6 +31,7 @@ interface ServiceFormProps {
 const ServiceListingForm: React.FC<ServiceFormProps> = ({
   service,
 }: ServiceFormProps) => {
+
   const form = useForm<z.infer<typeof serviceSchema>>({
     resolver: zodResolver(serviceSchema),
     defaultValues: service || {},
@@ -38,9 +40,30 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
   const { handleUpdateService } = useServicePresenter();
 
   // onSubmit handler
-  function onSubmit(values: z.infer<typeof serviceSchema>) {
-    console.log(values);
-    handleUpdateService(values);
+  async function onSubmit(serviceFormData: z.infer<typeof serviceSchema>) {
+    console.log(serviceFormData);
+    try {
+      await handleUpdateService(serviceFormData);
+
+      toast(`Service Updated Successfully`, {
+        position: 'top-center',
+        description:(
+          <div className="flex items-center">
+            <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
+            <span>
+              The service with name <strong>{serviceFormData.serviceName}</strong> has been updated.
+            </span>
+          </div>
+        ),
+        duration: 5000,
+        className:"bg-green-50 border-green-200"
+      });
+    } catch (error) {
+      toast.error(`Failed to updated service`, {
+        description: 'Error while updating service',
+        position: 'top-right',
+      })
+    }
   }
 
   return (

@@ -11,6 +11,7 @@ import {
 } from '@landscape/shadcn';
 import { ReactNode } from 'react';
 import { Service } from '../data/schema';
+import { ServiceDto } from '@landscape/api';
 
 interface DrawerLayoutProps {
   children: ReactNode;
