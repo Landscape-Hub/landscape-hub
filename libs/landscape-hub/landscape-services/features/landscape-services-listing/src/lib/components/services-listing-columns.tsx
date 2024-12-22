@@ -49,7 +49,7 @@ export const columns = (
     cell: ({ row }) => (
       <div className="w-[80px]">{row.getValue('serviceName')}</div>
     ),
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
   {
@@ -68,7 +68,7 @@ export const columns = (
       <DataTableColumnHeader column={column} title="Category Name" />
     ),
     cell: ({ row }) => <div>{row.getValue('categoryName')}</div>,
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
 
@@ -85,7 +85,7 @@ export const columns = (
 
       return <div>{formattedAmount}</div>;
     },
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
 
@@ -102,7 +102,7 @@ export const columns = (
 
       return <div>{formattedAmount}</div>;
     },
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
 
@@ -112,7 +112,7 @@ export const columns = (
       <DataTableColumnHeader column={column} title="Profit Margin Target" />
     ),
     cell: ({ row }) => <div>{row.getValue('profitMarginTarget')}</div>,
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
 
@@ -122,7 +122,7 @@ export const columns = (
       <DataTableColumnHeader column={column} title="Pricing Model" />
     ),
     cell: ({ row }) => <div>{row.getValue('pricingModel')}</div>,
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
 

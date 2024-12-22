@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -22,16 +22,18 @@ import {
 import { useServicePresenter } from '@landscape/landscape-services-presenters';
 import { toast } from 'sonner';
 import { CheckCircle2 } from 'lucide-react';
+
 type Service = z.infer<typeof serviceSchema>;
 
 interface ServiceFormProps {
   service: Service | null;
+  isEditing: boolean;
 }
 
 const ServiceListingForm: React.FC<ServiceFormProps> = ({
   service,
+  isEditing,
 }: ServiceFormProps) => {
-
   const form = useForm<z.infer<typeof serviceSchema>>({
     resolver: zodResolver(serviceSchema),
     defaultValues: service || {},
@@ -47,36 +49,49 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
 
       toast(`Service Updated Successfully`, {
         position: 'top-center',
-        description:(
+        description: (
           <div className="flex items-center">
             <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
             <span>
-              The service with name <strong>{serviceFormData.serviceName}</strong> has been updated.
+              The service with name{' '}
+              <strong>{serviceFormData.serviceName}</strong> has been updated.
             </span>
           </div>
         ),
         duration: 5000,
-        className:"bg-green-50 border-green-200"
+        className: 'bg-green-50 border-green-200',
       });
     } catch (error) {
       toast.error(`Failed to updated service`, {
         description: 'Error while updating service',
         position: 'top-right',
-      })
+      });
     }
   }
+
+  useEffect(() => {
+    if (!isEditing) {
+      form.reset({
+        serviceName: '',
+        description: '',
+        basePrice: 0,
+        costEstimate: 0,
+        profitMarginTarget: 0,
+      });
+    }
+  }, [form]);
 
   return (
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 bg-gray-200"
+        className="space-y-8 bg-gray-200 space-x-4"
       >
         {/*Service Name */}
         <FormField
           name="serviceName"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="space-x-4">
               <FormLabel htmlFor="serviceName">Service Name</FormLabel>
               <FormControl>
                 <Input
@@ -84,6 +99,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   type="text"
                   placeholder="Enter Service Name"
                   {...field}
+                  className="w-[465px]"
                 />
               </FormControl>
               <FormMessage />
@@ -104,6 +120,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   placeholder="Service description"
                   {...field}
                   value={field.value || ''}
+                  className="w-[465px]"
                 />
               </FormControl>
               <FormMessage />
@@ -116,7 +133,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
           control={form.control}
           name="categoryId"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-[465px]">
               <FormLabel htmlFor="categoryId">Category Name</FormLabel>
               <Select
                 onValueChange={(value) => field.onChange(Number(value))}
@@ -162,6 +179,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                       e.target.value ? Number(e.target.value) : undefined
                     )
                   }
+                  className="w-[100px]"
                 />
               </FormControl>
               <FormMessage />
@@ -187,6 +205,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                       e.target.value ? Number(e.target.value) : undefined
                     )
                   }
+                  className="w-[100px]"
                 />
               </FormControl>
               <FormMessage />
@@ -214,6 +233,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                       e.target.value ? Number(e.target.value) : undefined
                     )
                   } // <-- Convert string to number here
+                  className="w-[100px]"
                 />
               </FormControl>
               <FormMessage />
@@ -226,7 +246,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
           control={form.control}
           name="pricingModel"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-[465px]">
               <FormLabel htmlFor="pricingModel">Pricing Model</FormLabel>
               <FormControl>
                 <Select
@@ -253,7 +273,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full bg-blue-500 text-white hover:bg-blue-600"
+          className="w-[465px] bg-blue-500 text-white hover:bg-blue-600"
         >
           Submit
         </Button>

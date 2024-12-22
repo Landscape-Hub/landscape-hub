@@ -11,26 +11,28 @@ import {
 } from '@landscape/shadcn';
 import { ReactNode } from 'react';
 import { Service } from '../data/schema';
-import { ServiceDto } from '@landscape/api';
 
 interface DrawerLayoutProps {
   children: ReactNode;
   service: Service | null;
+  isEditing: boolean
 }
 
 export function ServiceListingFormDrawerLayout({
   children,
   service,
+                                                 isEditing
 }: DrawerLayoutProps) {
   return (
-    <DrawerContent className="bg-gray-400 bg-opacity-70 flex items-center justify-center h-full w-full">
-      <div className="mx-auto w-full max-w-md space-y-5">
+    <DrawerContent className="bg-gray-400 bg-opacity-70 flex h-full w-full justify-items-center">
+      <div className="space-y-5 w-[500px] bg-gray-200 ml-auto flex-col h-full">
         <DrawerHeader className="text-left">
           <DrawerTitle className="text-black">
-            Edit Service- {service?.serviceName}
+            {isEditing ? "Edit Service- " + service?.serviceName :  "Create New Service"}
           </DrawerTitle>
           <DrawerDescription className="text-black">
-            Make changes to your service here. Click save when you're done.
+            {isEditing && "Make changes to your service here. "}
+            Click save when you're done.
           </DrawerDescription>
         </DrawerHeader>
         {children}
