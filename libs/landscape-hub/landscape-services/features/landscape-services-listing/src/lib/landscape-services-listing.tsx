@@ -3,14 +3,11 @@ import { columns } from './components/services-listing-columns';
 import { ServiceDto } from '@landscape/api';
 import { useServicePresenter } from '@landscape/landscape-services-presenters';
 import React, { useState } from 'react';
-import {
-  Drawer,
-  DrawerTrigger,
-} from '@landscape/shadcn';
-import { ServiceListingFormDrawerLayout } from './components/service-listing-form-drawer-layout';
+import { Sheet, SheetTrigger } from '@landscape/shadcn';
 import ServiceListingForm from './components/service-listing-form';
 import { toast } from 'sonner';
 import { CheckCircle2, Plus } from 'lucide-react';
+import { ServiceListingFormSheetLayout } from './components/service-listing-form-sheet-layout';
 
 export function LandscapeServicesListing() {
   const {
@@ -55,43 +52,49 @@ export function LandscapeServicesListing() {
 
   const columnsArr = columns(onDelete, onEdit);
 
-  const [openDrawer, setOpenDrawer] = React.useState(false);
+  const [openSheet, setOpenSheet] = React.useState(false);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <Drawer
-      open={openDrawer}
-      onOpenChange={setOpenDrawer}
-      direction="right"
-      shouldScaleBackground={false}
-      snapPoints={[1, 2, 3]}
-      fadeFromIndex={1}
-    >
+    <Sheet open={openSheet} onOpenChange={setOpenSheet}>
       <div>
-        <DrawerTrigger asChild>
+        <SheetTrigger asChild>
           <Plus
             size={24}
             data-tip="Create New Service"
-            onClick={() => setIsEditing(false)}
+            onClick={() => {
+              handleSelectService({
+                  id: 0,
+                  serviceName: '',
+                  description: '',
+                  categoryId:1,
+                  categoryName:'',
+                  basePrice:0,
+                  costEstimate:0,
+                  profitMarginTarget:0,
+                  pricingModel:'Fixed',
+              });
+              setIsEditing(false);
+            }}
           />
-        </DrawerTrigger>
+        </SheetTrigger>
       </div>
       <div className="h-full flex-1 flex-col space-y-8 p-8 md:flex">
         <ServiceListingDataTable
           columns={columnsArr}
           data={services as ServiceDto[]}
         />
-        <ServiceListingFormDrawerLayout
+        <ServiceListingFormSheetLayout
           service={selectedService}
           isEditing={isEditing}
         >
           <ServiceListingForm service={selectedService} isEditing={isEditing} />
-        </ServiceListingFormDrawerLayout>
+        </ServiceListingFormSheetLayout>
       </div>
-    </Drawer>
+      </Sheet>
   );
 }
 

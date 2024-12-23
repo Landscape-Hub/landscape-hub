@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuTrigger,
+  DropdownMenuTrigger, SheetTrigger
 } from '@landscape/shadcn';
 import { serviceSchema } from '../data/schema';
 
@@ -43,11 +43,11 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DrawerTrigger asChild>
+        <SheetTrigger asChild>
           <DropdownMenuItem onSelect={() => onEdit(service)}>
             Edit
           </DropdownMenuItem>
-        </DrawerTrigger>
+        </SheetTrigger>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />

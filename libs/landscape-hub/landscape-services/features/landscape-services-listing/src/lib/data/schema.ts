@@ -7,7 +7,7 @@ export const serviceSchema = z.object({
   }),
   description: z.string().min(1, { message: 'Service Description is required' }),
   categoryId: z.number().min(1, { message: 'Service Category is required' }),
-  categoryName: z.string().min(1, { message: 'Service Category is required' }),
+  categoryName: z.string(),
   basePrice: z.number().min(1, { message: 'Base Price is required' }),
   costEstimate: z.number().min(1, { message: 'Cost Estimate is required' }),
   profitMarginTarget: z.number().min(1, { message: 'Profit Margin is required' }),

@@ -37,6 +37,7 @@ export const useServicePresenter = () => {
         await createServiceMutation.mutateAsync({
           body: newService,
         });
+        await refetch();
       } catch (err) {
         setError(`failed to create service: ${err}`);
       }
