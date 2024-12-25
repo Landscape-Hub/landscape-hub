@@ -1,7 +1,5 @@
 import { Table } from '@tanstack/react-table';
-import { X } from 'lucide-react';
-
-// import { DataTableFacetedFilter } from "./service-listing-table-faceted-filter"
+import { X, Search } from 'lucide-react';
 import { Button, Input } from '@landscape/shadcn';
 import { DataTableViewOptions } from './service-listing-table-view-options';
 
@@ -17,16 +15,15 @@ export function DataTableToolbar<TData>({
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
-        <Input
-          placeholder="Filter tasks..."
-          value={
-            (table.getColumn('serviceName')?.getFilterValue() as string) ?? ''
-          }
-          onChange={(event) =>
-            table.getColumn('serviceName')?.setFilterValue(event.target.value)
-          }
-          className="h-8 w-[150px] lg:w-[250px]"
-        />
+        <div className="relative">
+          <Search className="text-muted-foreground absolute left-2 top-2 h-4 w-4" />
+          <Input
+            placeholder="Filter all columns..."
+            value={table.getState().globalFilter ?? ''}
+            onChange={(event) => table.setGlobalFilter(event.target.value)}
+            className="h-8 w-[150px] lg:w-[350px] pl-8"
+          />
+        </div>
         {isFiltered && (
           <Button
             variant="ghost"
