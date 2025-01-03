@@ -6,6 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import { client } from '@landscape/api';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {Toaster as SonnerToaster} from 'sonner';
+import { SheetProvider } from '@landscape/contexts';
 // Create a client
 const queryClient = new QueryClient();
 
@@ -19,6 +20,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <StrictMode>
+    <SheetProvider>
     <ThemeProvider defaultTheme="system" storageKey="ui-theme">
       <QueryClientProvider client={queryClient}>
         <Router>
@@ -27,5 +29,6 @@ root.render(
         </Router>
       </QueryClientProvider>
     </ThemeProvider>
+    </SheetProvider>
   </StrictMode>
 );

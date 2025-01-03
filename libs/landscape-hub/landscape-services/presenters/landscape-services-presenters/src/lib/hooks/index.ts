@@ -5,7 +5,9 @@ import { useUpdateService } from './use-update-service';
 import { useDeleteService } from './use-delete-service';
 import { ServiceDto } from '@landscape/api';
 
-export const useServicePresenter = () => {
+export const useServicePresenter = (
+  onServiceSelected?: (service: ServiceDto | null) => void,
+) => {
   const {
     serviceList,
     isLoading,
@@ -27,9 +29,15 @@ export const useServicePresenter = () => {
   // Delete service
   const deleteServiceMutation = useDeleteService();
 
-  const handleSelectService = useCallback((service: ServiceDto) => {
+  const handleSelectService = useCallback(async (service: ServiceDto) => {
+    console.log('HandleSelectService: '+ service.serviceName)
     setSelectedService(service);
-  }, []);
+
+     // call the callback function
+     if(onServiceSelected) {
+       onServiceSelected(service);
+     }
+  }, [onServiceSelected]);
 
   const handleCreateService = useCallback(
     async (newService: Omit<ServiceDto, 'id'>) => {

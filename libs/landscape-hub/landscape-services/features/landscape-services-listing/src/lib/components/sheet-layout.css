@@ -1,0 +1,50 @@
+.custom-drawer-width {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/*@media (min-width: 640px) {*/
+/*  .custom-drawer-width {*/
+/*    width: 540px !important;*/
+/*    max-width: 540px !important;*/
+/*  }*/
+/*}*/
+
+/*@media (min-width: 640px) {*/
+/*  .sm\:max-w-sm {*/
+/*    max-width: 540px !important;*/
+/*  }*/
+/*}*/
+
+/*@media (min-width: 768px) {*/
+/*  .custom-drawer-width {*/
+/*    width: 640px !important;*/
+/*    max-width: 640px !important;*/
+/*  }*/
+/*}*/
+
+/*@media (min-width: 1024px) {*/
+/*  .custom-drawer-width {*/
+/*    width: 720px !important;*/
+/*    max-width: 720px !important;*/
+/*  }*/
+/*}*/
+
+@media (min-width: 640px) {
+  .sm\:max-w-sm {
+    max-width: 540px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .sm\:max-w-sm {
+    max-width: 640px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sm\:max-w-sm {
+    max-width: 720px !important;
+  }
+}
+

@@ -2,7 +2,6 @@ import { Row } from '@tanstack/react-table';
 import { MoreHorizontal } from 'lucide-react';
 import {
   Button,
-  DrawerTrigger,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -43,11 +42,9 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <SheetTrigger asChild>
           <DropdownMenuItem onSelect={() => onEdit(service)}>
             Edit
           </DropdownMenuItem>
-        </SheetTrigger>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />

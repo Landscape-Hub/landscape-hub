@@ -2,21 +2,27 @@ import { ServiceListingDataTable } from './components/service-listing-data-table
 import { columns } from './components/services-listing-columns';
 import { ServiceDto } from '@landscape/api';
 import { useServicePresenter } from '@landscape/landscape-services-presenters';
-import React, { useState } from 'react';
-import { Sheet, SheetTrigger } from '@landscape/shadcn';
+import React, { useCallback, useState } from 'react';
 import ServiceListingForm from './components/service-listing-form';
 import { toast } from 'sonner';
 import { CheckCircle2, Plus } from 'lucide-react';
-import { ServiceListingFormSheetLayout } from './components/service-listing-form-sheet-layout';
+import { SheetLayout } from './components/sheet-layout';
+import { useSheet } from '@landscape/contexts';
 
 export function LandscapeServicesListing() {
+  const logSelectedService = useCallback((service: ServiceDto | null) => {
+    console.log('Immediately updated selected service', service?.serviceName);
+  }, []);
+
   const {
     handleDeleteService,
     isLoading,
     services,
     handleSelectService,
     selectedService,
-  } = useServicePresenter();
+  } = useServicePresenter(logSelectedService);
+
+  const { openSheet } = useSheet();
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -46,55 +52,72 @@ export function LandscapeServicesListing() {
   };
 
   const onEdit = (service: ServiceDto) => {
+
     handleSelectService(service);
     setIsEditing(true);
+
+
+    console.log('In OnEdit', {
+      currentSelectedService: selectedService,
+      newService: service,
+      isEditing,
+    });
+
+    console.log('Render state: ', { selectedService, isEditing});
+
+    openSheet(
+      <div className="p-2">
+        {selectedService && (<ServiceListingForm service={selectedService} isEditing={isEditing} />)}
+      </div>
+    );
   };
 
   const columnsArr = columns(onDelete, onEdit);
-
-  const [openSheet, setOpenSheet] = React.useState(false);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <Sheet open={openSheet} onOpenChange={setOpenSheet}>
+    <>
       <div>
-        <SheetTrigger asChild>
-          <Plus
-            size={24}
-            data-tip="Create New Service"
-            onClick={() => {
-              handleSelectService({
-                  id: 0,
-                  serviceName: '',
-                  description: '',
-                  categoryId:1,
-                  categoryName:'',
-                  basePrice:0,
-                  costEstimate:0,
-                  profitMarginTarget:0,
-                  pricingModel:'Fixed',
-              });
-              setIsEditing(false);
-            }}
-          />
-        </SheetTrigger>
+        <Plus
+          size={24}
+          data-tip="Create New Service"
+          onClick={() => {
+            handleSelectService({
+              id: 0,
+              serviceName: '',
+              description: '',
+              categoryId: 1,
+              categoryName: '',
+              basePrice: 0,
+              costEstimate: 0,
+              profitMarginTarget: 0,
+              pricingModel: 'Fixed',
+            });
+            setIsEditing(false);
+            console.log(isEditing);
+            openSheet(
+              <div className="p-2">
+                <ServiceListingForm
+                  service={selectedService}
+                  isEditing={isEditing}
+                />
+              </div>
+            );
+          }}
+        />
       </div>
       <div className="h-full flex-1 flex-col space-y-8 p-8 md:flex">
-        <ServiceListingDataTable
-          columns={columnsArr}
-          data={services as ServiceDto[]}
-        />
-        <ServiceListingFormSheetLayout
-          service={selectedService}
-          isEditing={isEditing}
-        >
-          <ServiceListingForm service={selectedService} isEditing={isEditing} />
-        </ServiceListingFormSheetLayout>
+        <SheetLayout>
+          <ServiceListingDataTable
+            columns={columnsArr}
+            data={services as ServiceDto[]}
+          />
+        </SheetLayout>
       </div>
-      </Sheet>
+    </>
   );
 }
 

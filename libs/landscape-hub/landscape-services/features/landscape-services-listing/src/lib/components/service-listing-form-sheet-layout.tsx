@@ -18,6 +18,10 @@ interface SheetLayoutProps {
   isEditing: boolean
 }
 
+interface DrawerLayoutProps {
+  children: ReactNode;
+}
+
 export function ServiceListingFormSheetLayout({
                                                  children,
                                                  service,
