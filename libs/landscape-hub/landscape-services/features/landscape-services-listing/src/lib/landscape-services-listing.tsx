@@ -2,7 +2,7 @@ import { ServiceListingDataTable } from './components/service-listing-data-table
 import { columns } from './components/services-listing-columns';
 import { ServiceDto } from '@landscape/api';
 import { useServicePresenter } from '@landscape/landscape-services-presenters';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ServiceListingForm from './components/service-listing-form';
 import { toast } from 'sonner';
 import { CheckCircle2, Plus } from 'lucide-react';
@@ -51,11 +51,23 @@ export function LandscapeServicesListing() {
     }
   };
 
+  // useEffect to watch for selectedService changes
+  useEffect(() => {
+    console.log('Updated selectedService: ', selectedService);
+
+    selectedService && openSheet(
+      <div className="p-2">
+        { (<ServiceListingForm service={selectedService} isEditing={isEditing} />)}
+      </div>
+    );
+
+  }, [selectedService, isEditing]);
+
   const onEdit = (service: ServiceDto) => {
 
     handleSelectService(service);
-    setIsEditing(true);
 
+    setIsEditing(true);
 
     console.log('In OnEdit', {
       currentSelectedService: selectedService,
@@ -65,11 +77,7 @@ export function LandscapeServicesListing() {
 
     console.log('Render state: ', { selectedService, isEditing});
 
-    openSheet(
-      <div className="p-2">
-        {selectedService && (<ServiceListingForm service={selectedService} isEditing={isEditing} />)}
-      </div>
-    );
+
   };
 
   const columnsArr = columns(onDelete, onEdit);
@@ -98,14 +106,14 @@ export function LandscapeServicesListing() {
             });
             setIsEditing(false);
             console.log(isEditing);
-            openSheet(
-              <div className="p-2">
-                <ServiceListingForm
-                  service={selectedService}
-                  isEditing={isEditing}
-                />
-              </div>
-            );
+            // openSheet(
+            //   <div className="p-2">
+            //     <ServiceListingForm
+            //       service={selectedService}
+            //       isEditing={isEditing}
+            //     />
+            //   </div>
+            // );
           }}
         />
       </div>
