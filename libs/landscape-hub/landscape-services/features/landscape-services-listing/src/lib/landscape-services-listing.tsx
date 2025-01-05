@@ -53,31 +53,22 @@ export function LandscapeServicesListing() {
 
   // useEffect to watch for selectedService changes
   useEffect(() => {
-    console.log('Updated selectedService: ', selectedService);
-
-    selectedService && openSheet(
-      <div className="p-2">
-        { (<ServiceListingForm service={selectedService} isEditing={isEditing} />)}
-      </div>
-    );
-
+    selectedService &&
+      openSheet(
+        <div className="p-2">
+          {
+            <ServiceListingForm
+              service={selectedService}
+              isEditing={isEditing}
+            />
+          }
+        </div>
+      );
   }, [selectedService, isEditing]);
 
   const onEdit = (service: ServiceDto) => {
-
     handleSelectService(service);
-
     setIsEditing(true);
-
-    console.log('In OnEdit', {
-      currentSelectedService: selectedService,
-      newService: service,
-      isEditing,
-    });
-
-    console.log('Render state: ', { selectedService, isEditing});
-
-
   };
 
   const columnsArr = columns(onDelete, onEdit);

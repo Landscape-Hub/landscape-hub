@@ -44,22 +44,21 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
   // onSubmit handler
   async function onSubmit(serviceFormData: z.infer<typeof serviceSchema>) {
     try {
-      if (isEditing)
-      {await handleUpdateService(serviceFormData);}
-      else
-      {
+      if (isEditing) {
+        await handleUpdateService(serviceFormData);
+      } else {
         await handleCreateService(serviceFormData);
-        console.log("create");
+        console.log('create');
       }
 
-      toast(`Service ${isEditing? "Updated" : "Created"} Successfully`, {
+      toast(`Service ${isEditing ? 'Updated' : 'Created'} Successfully`, {
         position: 'top-center',
         description: (
           <div className="flex items-center">
             <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
             <span>
-              Service{' '}
-              <strong>{serviceFormData.serviceName}</strong> {` has been ${isEditing? "updated" : "created"}.`}
+              Service <strong>{serviceFormData.serviceName}</strong>{' '}
+              {` has been ${isEditing ? 'updated' : 'created'}.`}
             </span>
           </div>
         ),
@@ -76,10 +75,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8"
-      >
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/*Service Name */}
         <FormField
           name="serviceName"
@@ -167,7 +163,11 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   placeholder="Enter Base Price"
                   {...field}
                   onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                  value={field.value || ''}
+                  value={
+                    field.value
+                      ? parseFloat(field.value.toString()).toFixed(2)
+                      : ''
+                  }
                 />
               </FormControl>
               <FormMessage />
@@ -189,7 +189,11 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
                   placeholder="Enter Cost Estimate"
                   {...field}
                   onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                  value={field.value || ''}
+                  value={
+                    field.value
+                      ? parseFloat(field.value.toString()).toFixed(2)
+                      : ''
+                  }
                 />
               </FormControl>
               <FormMessage />
