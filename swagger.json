@@ -24,9 +24,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -36,6 +33,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -62,15 +62,14 @@
                 "$ref": "#/components/schemas/AgentForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -91,11 +90,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -132,8 +131,7 @@
                 "$ref": "#/components/schemas/AgentForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -168,9 +166,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -180,6 +175,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -206,15 +204,14 @@
                 "$ref": "#/components/schemas/CustomerForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -235,11 +232,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -276,8 +273,7 @@
                 "$ref": "#/components/schemas/CustomerForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -312,9 +308,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -324,6 +317,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -350,15 +346,14 @@
                 "$ref": "#/components/schemas/JobForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -379,11 +374,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -420,8 +415,7 @@
                 "$ref": "#/components/schemas/JobForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -456,9 +450,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -468,6 +459,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -504,8 +498,7 @@
                 "$ref": "#/components/schemas/MetricRunFrequencyForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -543,15 +536,14 @@
                 "$ref": "#/components/schemas/MetricRunFrequencyForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -572,11 +564,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -598,9 +590,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -610,360 +599,9 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/metricThresholdDirectionTypes/{id}": {
-      "get": {
-        "tags": [
-          "MetricThresholdDirectionTypeHandler"
-        ],
-        "operationId": "GetMetricThresholdDirectionType",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
+          },
           "404": {
             "description": "Not Found"
-          },
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/metricThresholdDirectionTypes": {
-      "get": {
-        "tags": [
-          "MetricThresholdDirectionTypeHandler"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "MetricThresholdDirectionTypeHandler"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MetricThresholdDirectionTypeForCreationDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "MetricThresholdDirectionTypeHandler"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MetricThresholdDirectionTypeForUpdateDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "204": {
-            "description": "No Content"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "MetricThresholdDirectionTypeHandler"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "204": {
-            "description": "No Content"
-          }
-        }
-      }
-    },
-    "/metricThresholdDirectionTypes/{name}": {
-      "get": {
-        "tags": [
-          "MetricThresholdDirectionTypeHandler"
-        ],
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/metricTypes/{id}": {
-      "get": {
-        "tags": [
-          "MetricTypeHandler"
-        ],
-        "operationId": "GetMetricType",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricTypeDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/metricTypes": {
-      "get": {
-        "tags": [
-          "MetricTypeHandler"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MetricTypeDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "MetricTypeHandler"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MetricTypeForCreationDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricTypeDto"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "MetricTypeHandler"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MetricTypeForUpdateDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "204": {
-            "description": "No Content"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "MetricTypeHandler"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": true,
-            "style": "form",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "204": {
-            "description": "No Content"
-          }
-        }
-      }
-    },
-    "/metricTypes/{name}": {
-      "get": {
-        "tags": [
-          "MetricTypeHandler"
-        ],
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "required": true,
-            "style": "simple",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "404": {
-            "description": "Not Found"
-          },
-          "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MetricTypeDto"
-                }
-              }
-            }
           }
         }
       }
@@ -987,9 +625,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -999,6 +634,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1035,8 +673,7 @@
                 "$ref": "#/components/schemas/MetricForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -1074,15 +711,14 @@
                 "$ref": "#/components/schemas/MetricForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1103,11 +739,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1142,6 +778,356 @@
         }
       }
     },
+    "/metricThresholdDirectionTypes/{id}": {
+      "get": {
+        "tags": [
+          "MetricThresholdDirectionTypeHandler"
+        ],
+        "operationId": "GetMetricThresholdDirectionType",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/metricThresholdDirectionTypes": {
+      "get": {
+        "tags": [
+          "MetricThresholdDirectionTypeHandler"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MetricThresholdDirectionTypeHandler"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricThresholdDirectionTypeForCreationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MetricThresholdDirectionTypeHandler"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricThresholdDirectionTypeForUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MetricThresholdDirectionTypeHandler"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/metricThresholdDirectionTypes/{name}": {
+      "get": {
+        "tags": [
+          "MetricThresholdDirectionTypeHandler"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricThresholdDirectionTypeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/metricTypes/{id}": {
+      "get": {
+        "tags": [
+          "MetricTypeHandler"
+        ],
+        "operationId": "GetMetricType",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricTypeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/metricTypes": {
+      "get": {
+        "tags": [
+          "MetricTypeHandler"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MetricTypeDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "MetricTypeHandler"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricTypeForCreationDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricTypeDto"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "MetricTypeHandler"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetricTypeForUpdateDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "MetricTypeHandler"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "style": "form",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/metricTypes/{name}": {
+      "get": {
+        "tags": [
+          "MetricTypeHandler"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricTypeDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/reviews/{id}": {
       "get": {
         "tags": [
@@ -1161,9 +1147,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -1173,6 +1156,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1199,15 +1185,14 @@
                 "$ref": "#/components/schemas/ReviewForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1228,11 +1213,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1269,8 +1254,7 @@
                 "$ref": "#/components/schemas/ReviewForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -1305,9 +1289,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -1317,6 +1298,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1353,8 +1337,7 @@
                 "$ref": "#/components/schemas/ServiceAlignmentTypeForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -1392,15 +1375,14 @@
                 "$ref": "#/components/schemas/ServiceAlignmentTypeForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1421,11 +1403,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1447,9 +1429,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -1459,6 +1438,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1482,9 +1464,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -1494,6 +1473,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1520,15 +1502,14 @@
                 "$ref": "#/components/schemas/ServiceForUpdateDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1549,11 +1530,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1590,8 +1571,7 @@
                 "$ref": "#/components/schemas/ServiceForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -1626,9 +1606,6 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "200": {
             "description": "Success",
             "content": {
@@ -1638,6 +1615,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1664,15 +1644,14 @@
                 "$ref": "#/components/schemas/UserDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -1693,11 +1672,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "Not Found"
-          },
           "204": {
             "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -1731,11 +1710,10 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserDto"
+                "$ref": "#/components/schemas/UserForCreationDto"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "201": {
@@ -1743,7 +1721,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserDto"
+                  "$ref": "#/components/schemas/UserForCreationDto"
                 }
               }
             }
@@ -2503,6 +2481,15 @@
         },
         "additionalProperties": false
       },
+      "PricingModelEnum": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
       "ReviewDto": {
         "type": "object",
         "properties": {
@@ -2670,6 +2657,37 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "basePrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "costEstimate": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitMarginTarget": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pricingModelEnumValue": {
+            "$ref": "#/components/schemas/PricingModelEnum"
+          },
+          "pricingModel": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2682,6 +2700,30 @@
             "nullable": true
           },
           "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "basePrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "costEstimate": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitMarginTarget": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pricingModel": {
             "type": "string",
             "nullable": true
           }
@@ -2698,11 +2740,93 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "categoryId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "categoryName": {
+            "type": "string",
+            "nullable": true
+          },
+          "basePrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "costEstimate": {
+            "type": "number",
+            "format": "double"
+          },
+          "profitMarginTarget": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pricingModel": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
       },
       "UserDto": {
+        "type": "object",
+        "properties": {
+          "userID": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "phoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "stateOrProvince": {
+            "type": "string",
+            "nullable": true
+          },
+          "postalCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "jobTitle": {
+            "type": "string",
+            "nullable": true
+          },
+          "bio": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastUpdatedDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserForCreationDto": {
         "type": "object",
         "properties": {
           "userID": {

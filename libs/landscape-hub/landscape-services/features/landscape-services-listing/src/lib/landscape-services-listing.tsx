@@ -2,7 +2,7 @@ import { ServiceListingDataTable } from './components/service-listing-data-table
 import { columns } from './components/services-listing-columns';
 import { ServiceDto } from '@landscape/api';
 import { useServicePresenter } from '@landscape/landscape-services-presenters';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import ServiceListingForm from './components/service-listing-form';
 import { toast } from 'sonner';
 import { CheckCircle2, Plus } from 'lucide-react';
@@ -10,33 +10,37 @@ import { SheetLayout } from './components/sheet-layout';
 import { useSheet } from '@landscape/contexts';
 
 export function LandscapeServicesListing() {
-  const logSelectedService = useCallback((service: ServiceDto | null) => {
-    console.log('Immediately updated selected service', service?.serviceName);
-  }, []);
-
   const {
     handleDeleteService,
     isLoading,
     services,
     handleSelectService,
     selectedService,
-  } = useServicePresenter(logSelectedService);
+  } = useServicePresenter();
 
   const { openSheet } = useSheet();
 
   const [isEditing, setIsEditing] = useState(false);
 
   const onDelete = async (service: ServiceDto) => {
+    const serviceName = service?.serviceName ?? 'Unknown Service';
+
     try {
+      if (!service || !service.id) {
+        toast.error('Invalid service for deletion');
+        return;
+      }
+
       await handleDeleteService(service);
+
       toast(`Service Deleted Successfully`, {
         position: 'top-center',
         description: (
           <div className="flex items-center">
             <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
             <span>
-              The service with name <strong>{service.serviceName}</strong> has
-              been deleted.
+              The service with name <strong>{serviceName}</strong> has been
+              deleted.
             </span>
           </div>
         ),
@@ -47,34 +51,65 @@ export function LandscapeServicesListing() {
       toast.error(`Failed to delete service`, {
         description: 'Error while delete service',
         position: 'top-right',
+        duration: 5000,
       });
     }
   };
 
-  // useEffect to watch for selectedService changes
   useEffect(() => {
-    selectedService &&
+    if (selectedService) {
       openSheet(
+        <MemoizedServiceForm service={selectedService} isEditing={isEditing} />
+      );
+    }
+  }, [selectedService, isEditing]);
+
+  // memoize the serviceListing form component
+  // makes sure that the form logic is contained; and it only updates when service or isEditing changes.
+  //
+  const MemoizedServiceForm = useMemo(() => {
+    return function MemoizedForm({
+      service,
+      isEditing,
+    }: {
+      service: ServiceDto;
+      isEditing: boolean;
+    }) {
+      return (
         <div className="p-2">
-          {
-            <ServiceListingForm
-              service={selectedService}
-              isEditing={isEditing}
-            />
-          }
+          <ServiceListingForm
+            service={{
+              ...service,
+              serviceName: service?.serviceName || '',
+              description: service?.description || '',
+              categoryId: service?.categoryId || 0,
+              costEstimate: service?.costEstimate || 0,
+              profitMarginTarget: service?.profitMarginTarget || 0,
+              basePrice: service?.basePrice || 0,
+              categoryName: service?.categoryName || '',
+              pricingModel: service?.pricingModel || '',
+            }}
+            isEditing={isEditing}
+          />
         </div>
       );
-  }, [selectedService, isEditing]);
+    };
+  }, []);
 
   const onEdit = (service: ServiceDto) => {
     handleSelectService(service);
     setIsEditing(true);
   };
 
-  const columnsArr = columns(onDelete, onEdit);
+  const columnsArr = useMemo(
+    () => columns(onDelete, onEdit),
+    [onDelete, onEdit]
+  );
 
   if (isLoading) {
     return <div>Loading...</div>;
+  } else if (!services?.length) {
+    return <div>No services available.</div>;
   }
 
   return (
@@ -95,16 +130,7 @@ export function LandscapeServicesListing() {
               profitMarginTarget: 0,
               pricingModel: 'Fixed',
             });
-            setIsEditing(false);
-            console.log(isEditing);
-            // openSheet(
-            //   <div className="p-2">
-            //     <ServiceListingForm
-            //       service={selectedService}
-            //       isEditing={isEditing}
-            //     />
-            //   </div>
-            // );
+            setIsEditing(false); // is invoked directly but may not reflect immediately.
           }}
         />
       </div>

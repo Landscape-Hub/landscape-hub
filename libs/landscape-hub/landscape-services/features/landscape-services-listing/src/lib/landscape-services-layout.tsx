@@ -1,4 +1,4 @@
-import { LandscapeServicesListing } from '@landscape/landscape-services-listing';
+import { LandscapeServicesListing } from './landscape-services-listing';
 
 export function LandscapeServicesLayout() {
   return <LandscapeServicesListing />;

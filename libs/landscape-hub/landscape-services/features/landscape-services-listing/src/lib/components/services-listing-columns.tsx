@@ -1,6 +1,6 @@
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTableColumnHeader } from './service-listing-table-column-header';
-import { DataTableRowActions } from './service-listing-table-row-actions';
+import { ServiceListingDataTableRowActions } from './service-listing-table-row-actions';
 import { Checkbox } from '@landscape/shadcn';
 import { ServiceDto } from '@landscape/api';
 
@@ -129,7 +129,7 @@ export const columns = (
   {
     id: 'actions',
     cell: ({ row }) => (
-      <DataTableRowActions row={row} onDelete={onDelete} onEdit={onEdit} />
+      <ServiceListingDataTableRowActions row={row} onDelete={onDelete} onEdit={onEdit} />
     ),
   },
 ];

@@ -3,8 +3,7 @@ import { AppLayout } from '@landscape/layout';
 import { DashboardLayout } from '@landscape/dashboard-ui';
 import { FeatureOverview } from '@landscape/feature-overview';
 import { UserManagementUi } from '@landscape/user-management-ui';
-import { LandscapeServicesLayout } from '@landscape/landscape-services-ui';
-import { LandscapeServicesListing } from '@landscape/landscape-services-listing';
+import { LandscapeServicesLayout, LandscapeServicesListing } from '@landscape/landscape-services-listing';
 
 export const routes: RouteObject[] = [
   {

@@ -7,13 +7,17 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuShortcut,
-  DropdownMenuTrigger, SheetTrigger
+  DropdownMenuTrigger,
 } from '@landscape/shadcn';
-import { serviceSchema } from '../data/schema';
+// import { serviceSchema } from '../data/schema';
+// type Service = z.infer<typeof serviceSchema>;
 
-import { ServiceListingAlertDialog } from '@landscape/landscape-services-ui';
+import {
+  GenericAlertDialog,
+} from '@landscape/landscape-services-ui';
 import React from 'react';
 import { ServiceDto } from '@landscape/api';
+// import { z } from 'zod';
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -21,15 +25,19 @@ interface DataTableRowActionsProps<TData> {
   onEdit: (service: ServiceDto) => void;
 }
 
-export function DataTableRowActions<TData>({
+export function ServiceListingDataTableRowActions<TData>({
   row,
   onDelete,
   onEdit,
 }: DataTableRowActionsProps<TData>) {
-  const service = serviceSchema.parse(row.original);
+  // const service = serviceSchema.parse(row.original);
+  const service = row.original as ServiceDto;
 
   const [open, setOpen] = React.useState(false);
 
+  // const handleServiceAction = (service: ServiceDto) => {
+  //   console.log(`action executed for service`, service);
+  // };
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -42,19 +50,20 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-          <DropdownMenuItem onSelect={() => onEdit(service)}>
-            Edit
-          </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onEdit(service)}>
+          Edit
+        </DropdownMenuItem>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSeparator />
-        <ServiceListingAlertDialog
+
+        <GenericAlertDialog
           onAction={onDelete}
-          service={service}
+          data={service}
           open={open}
           setOpen={setOpen}
-          dialogTitle={'Are you absolutely sure you want to delete Service- '}
+          dialogTitle={`Are you absolutely sure you want to delete Service- ${service.serviceName}`}
           dialogDesc={
             ' This action cannot be undone. This will permanently delete the\n' +
             '            service and remove its data from our servers.'
@@ -70,7 +79,7 @@ export function DataTableRowActions<TData>({
             Delete
             <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
           </DropdownMenuItem>
-        </ServiceListingAlertDialog>
+        </GenericAlertDialog>
       </DropdownMenuContent>
     </DropdownMenu>
   );

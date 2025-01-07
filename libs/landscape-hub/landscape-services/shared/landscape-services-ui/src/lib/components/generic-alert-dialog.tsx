@@ -10,50 +10,51 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@landscape/shadcn';
-import { Service } from '@landscape/schema';
 
-interface AlertDialogDemoProps {
-  onAction: (service: Service) => void;
-  service: Service;
+interface GenericAlertDialogProps<T> {
+  onAction: (item: T) => void;
+  data: T;
   open: boolean;
   setOpen: (open: boolean) => void;
   dialogTitle: string;
   dialogDesc: string;
   buttonText: string;
   children: ReactNode;
+  renderTitle?: (data: T) => ReactNode | string;
+  renderDescription?: (data: T) => ReactNode | string;
 }
-
-export function ServiceListingAlertDialog({
+export function GenericAlertDialog<T>({
   onAction,
-  service,
+  data,
   open,
   setOpen,
   dialogTitle,
   dialogDesc,
   buttonText,
   children,
-}: AlertDialogDemoProps) {
+  renderTitle,
+  renderDescription,
+}: GenericAlertDialogProps<T>) {
   const handleAction = () => {
-    onAction(service);
+    onAction(data);
     setOpen(false);
   };
-
-  const handleCancel = () => {
-    return null;
-  };
-
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogTrigger asChild>{children}</AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            {dialogTitle} {service.serviceName}?
+            {renderTitle ? renderTitle(data) : dialogTitle}
           </AlertDialogTitle>
-          <AlertDialogDescription>{dialogDesc}</AlertDialogDescription>
+          <AlertDialogDescription>
+            {renderDescription ? renderDescription(data) : dialogDesc}
+          </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={handleCancel}>Cancel</AlertDialogCancel>
+          <AlertDialogAction onClick={() => setOpen(false)}>
+            Cancel
+          </AlertDialogAction>
           <AlertDialogAction onClick={handleAction}>
             {buttonText}
           </AlertDialogAction>
@@ -62,5 +63,3 @@ export function ServiceListingAlertDialog({
     </AlertDialog>
   );
 }
-
-export default ServiceListingAlertDialog;

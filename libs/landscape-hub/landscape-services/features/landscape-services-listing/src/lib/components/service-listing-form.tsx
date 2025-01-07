@@ -22,7 +22,7 @@ import {
 import { useServicePresenter } from '@landscape/landscape-services-presenters';
 import { toast } from 'sonner';
 import { CheckCircle2 } from 'lucide-react';
-
+import { useSheet } from '@landscape/contexts';
 type Service = z.infer<typeof serviceSchema>;
 
 interface ServiceFormProps {
@@ -72,6 +72,9 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
       });
     }
   }
+
+
+  const {closeSheet} = useSheet();
 
   return (
     <Form {...form}>
@@ -253,17 +256,26 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
             </FormItem>
           )}
         />
+        <div className="mt-auto flex space-x-5 h-full">
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            className="bg-blue-500 text-white hover:bg-blue-600"
+          >
+            Submit
+          </Button>
 
-        {/* Submit Button */}
-        <Button
-          type="submit"
-          className="bg-blue-500 text-white hover:bg-blue-600"
-        >
-          Submit
-        </Button>
+          <Button
+            onClick={()=> closeSheet()}
+            className="bg-blue-500 text-white hover:bg-blue-600"
+          >
+            Cancel
+          </Button>
+
+        </div>
       </form>
     </Form>
-  );
+);
 };
 
 export default ServiceListingForm;

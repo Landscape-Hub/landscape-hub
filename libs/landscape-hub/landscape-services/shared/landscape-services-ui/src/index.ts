@@ -1,2 +1,1 @@
-export * from './lib/landscape-services-layout';
-export * from './lib/components/service-listing-alert-dialog';
+export * from './lib/components/generic-alert-dialog';
