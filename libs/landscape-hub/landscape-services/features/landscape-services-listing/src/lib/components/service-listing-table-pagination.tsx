@@ -1,5 +1,6 @@
 import { Table } from '@tanstack/react-table';
 import {
+  CheckCircle2,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
@@ -7,22 +8,82 @@ import {
 } from 'lucide-react';
 import {
   Button,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@landscape/shadcn';
+import { ServiceDto } from '@landscape/api';
+import { GenericAlertDialog } from '@landscape/landscape-services-ui';
+import React from 'react';
+import { toast } from 'sonner';
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
+  onDeleteForAll: (service: ServiceDto) => void;
 }
 
 export function DataTablePagination<TData>({
   table,
+  onDeleteForAll,
 }: DataTablePaginationProps<TData>) {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <div className="flex items-center justify-between px-2">
+      <div>
+        <GenericAlertDialog
+          onAction={() => {
+            try {
+              table.getFilteredSelectedRowModel().rows.map((rw) => {
+                const service = rw.original as ServiceDto;
+                onDeleteForAll(service);
+              });
+              toast(`Services Deleted Successfully`, {
+                position: 'top-center',
+                description: (
+                  <div className="flex items-center">
+                    <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
+                    <span>The selected services have been deleted.</span>
+                  </div>
+                ),
+                duration: 5000,
+                className: 'bg-green-50 border-green-200',
+              });
+            } catch (error) {
+              toast.error(`Failed to delete services`, {
+                description: 'Error while deleting services',
+                position: 'top-right',
+                duration: 5000,
+              });
+            }
+          }}
+          data={null}
+          open={open}
+          setOpen={setOpen}
+          dialogTitle={`Are you absolutely sure you want to delete the selected services`}
+          dialogDesc={
+            ' This action cannot be undone. This will permanently delete the\n' +
+            '            services and remove them from our servers.'
+          }
+          buttonText={'Delete All'}
+        >
+          <Button
+            variant="outline"
+            className="h-8 w-20 p-0"
+            onClick={(event) => {
+              event.preventDefault();
+              if (table.getFilteredSelectedRowModel().rows.length === 0) return;
+              setOpen(true);
+            }}
+          >
+            Delete All
+          </Button>
+        </GenericAlertDialog>
+      </div>
       <div className="flex-1 text-sm text-muted-foreground">
         {table.getFilteredSelectedRowModel().rows.length} of{' '}
         {table.getFilteredRowModel().rows.length} row(s) selected.

@@ -24,15 +24,17 @@ import {
   TableRow,
 } from '@landscape/shadcn';
 import { useState } from 'react';
+import { ServiceDto } from '@landscape/api';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onDeleteForAll: (service: ServiceDto) => void;
 }
 
 export function ServiceListingDataTable<TData, TValue>({
   columns,
-  data,
+  data, onDeleteForAll
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -114,7 +116,7 @@ export function ServiceListingDataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+      <DataTablePagination table={table} onDeleteForAll={onDeleteForAll}/>
     </div>
   );
 }

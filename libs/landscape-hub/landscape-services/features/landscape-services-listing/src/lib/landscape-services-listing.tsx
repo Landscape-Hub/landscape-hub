@@ -56,6 +56,11 @@ export function LandscapeServicesListing() {
     }
   };
 
+  //Function is called iteratively when deleting multiple services
+  const onDeleteForAll = async (service: ServiceDto) => {
+    await handleDeleteService(service);
+  }
+
   useEffect(() => {
     if (selectedService) {
       openSheet(
@@ -103,7 +108,7 @@ export function LandscapeServicesListing() {
 
   const columnsArr = useMemo(
     () => columns(onDelete, onEdit),
-    [onDelete, onEdit]
+    [onDelete, onEdit, onDeleteForAll]
   );
 
   if (isLoading) {
@@ -139,6 +144,7 @@ export function LandscapeServicesListing() {
           <ServiceListingDataTable
             columns={columnsArr}
             data={services as ServiceDto[]}
+            onDeleteForAll={onDeleteForAll}
           />
         </SheetLayout>
       </div>
