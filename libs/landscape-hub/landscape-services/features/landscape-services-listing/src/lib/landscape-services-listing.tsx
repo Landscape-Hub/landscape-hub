@@ -181,10 +181,9 @@ export function LandscapeServicesListing() {
           >
             <Button
               variant="destructive"
-              // className="h-8 w-20 p-0"
               onClick={(event) => {
                 event.preventDefault();
-                // if (arrServicesToDelete.length === 0) return;
+                if (arrServicesToDelete.length === 0) return;
                 setOpenAlertDialog(true);
               }}
             >
