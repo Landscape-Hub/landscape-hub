@@ -8,6 +8,8 @@ import { toast } from 'sonner';
 import { CheckCircle2, Plus } from 'lucide-react';
 import { SheetLayout } from './components/sheet-layout';
 import { useSheet } from '@landscape/contexts';
+import { Button } from '@landscape/shadcn';
+import { GenericAlertDialog } from '@landscape/landscape-services-ui';
 
 export function LandscapeServicesListing() {
   const {
@@ -19,8 +21,8 @@ export function LandscapeServicesListing() {
   } = useServicePresenter();
 
   const { openSheet } = useSheet();
-
   const [isEditing, setIsEditing] = useState(false);
+  const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
 
   const onDelete = async (service: ServiceDto) => {
     const serviceName = service?.serviceName ?? 'Unknown Service';
@@ -30,9 +32,7 @@ export function LandscapeServicesListing() {
         toast.error('Invalid service for deletion');
         return;
       }
-
       await handleDeleteService(service);
-
       toast(`Service Deleted Successfully`, {
         position: 'top-center',
         description: (
@@ -57,9 +57,13 @@ export function LandscapeServicesListing() {
   };
 
   //Function is called iteratively when deleting multiple services
-  const onDeleteForAll = async (service: ServiceDto) => {
+  const onDeleteForMultiSelect = async (service: ServiceDto) => {
     await handleDeleteService(service);
-  }
+  };
+
+  const [arrServicesToDelete, setArrServicesToDelete] = React.useState<
+    ServiceDto[]
+  >([]);
 
   useEffect(() => {
     if (selectedService) {
@@ -108,7 +112,7 @@ export function LandscapeServicesListing() {
 
   const columnsArr = useMemo(
     () => columns(onDelete, onEdit),
-    [onDelete, onEdit, onDeleteForAll]
+    [onDelete, onEdit, onDeleteForMultiSelect]
   );
 
   if (isLoading) {
@@ -119,32 +123,83 @@ export function LandscapeServicesListing() {
 
   return (
     <>
-      <div>
-        <Plus
-          size={24}
-          data-tip="Create New Service"
-          onClick={() => {
-            handleSelectService({
-              id: 0,
-              serviceName: '',
-              description: '',
-              categoryId: 1,
-              categoryName: '',
-              basePrice: 0,
-              costEstimate: 0,
-              profitMarginTarget: 0,
-              pricingModel: 'Fixed',
-            });
-            setIsEditing(false); // is invoked directly but may not reflect immediately.
-          }}
-        />
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold tracking-tight">Services</h1>
+        <div className="flex space-x-2">
+          <Button
+            onClick={() => {
+              handleSelectService({
+                id: 0,
+                serviceName: '',
+                description: '',
+                categoryId: 1,
+                categoryName: '',
+                basePrice: 0,
+                costEstimate: 0,
+                profitMarginTarget: 0,
+                pricingModel: 'Fixed',
+              });
+              setIsEditing(false); // is invoked directly but may not reflect immediately.
+            }}
+          >
+            <Plus className="mr-2 h-4 w-4" /> New Service
+          </Button>
+          <GenericAlertDialog
+            onAction={() => {
+              try {
+                arrServicesToDelete.forEach(async (service) => {
+                  await onDeleteForMultiSelect(service);
+                });
+                toast(`Services Deleted Successfully`, {
+                  position: 'top-center',
+                  description: (
+                    <div className="flex items-center">
+                      <CheckCircle2 className="mr-2 h-4 w-4 text-green-500" />
+                      <span>The selected services have been deleted.</span>
+                    </div>
+                  ),
+                  duration: 5000,
+                  className: 'bg-green-50 border-green-200',
+                });
+              } catch (error) {
+                toast.error(`Failed to delete services`, {
+                  description: 'Error while deleting services',
+                  position: 'top-right',
+                  duration: 5000,
+                });
+              }
+            }}
+            data={null}
+            open={openAlertDialog}
+            setOpen={setOpenAlertDialog}
+            dialogTitle={`Are you absolutely sure you want to delete the selected services`}
+            dialogDesc={
+              ' This action cannot be undone. This will permanently delete the\n' +
+              '            services and remove them from our servers.'
+            }
+            buttonText={'Delete Selected'}
+          >
+            <Button
+              variant="destructive"
+              // className="h-8 w-20 p-0"
+              onClick={(event) => {
+                event.preventDefault();
+                // if (arrServicesToDelete.length === 0) return;
+                setOpenAlertDialog(true);
+              }}
+            >
+              Delete All
+            </Button>
+          </GenericAlertDialog>
+        </div>
       </div>
-      <div className="h-full flex-1 flex-col space-y-8 p-8 md:flex">
+      <div className="mt-8">
         <SheetLayout>
           <ServiceListingDataTable
             columns={columnsArr}
             data={services as ServiceDto[]}
-            onDeleteForAll={onDeleteForAll}
+            arrServicesToDelete={arrServicesToDelete}
+            setArrServicesToDelete={setArrServicesToDelete}
           />
         </SheetLayout>
       </div>

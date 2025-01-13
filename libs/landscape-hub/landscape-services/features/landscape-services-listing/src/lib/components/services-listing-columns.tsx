@@ -33,15 +33,6 @@ export const columns = (
     enableHiding: false,
   },
   {
-    accessorKey: 'id',
-    header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Id" />
-    ),
-    cell: ({ row }) => <div className="w-[80px]">{row.getValue('id')}</div>,
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
     accessorKey: 'serviceName',
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Service Name" />
@@ -129,7 +120,11 @@ export const columns = (
   {
     id: 'actions',
     cell: ({ row }) => (
-      <ServiceListingDataTableRowActions row={row} onDelete={onDelete} onEdit={onEdit} />
+      <ServiceListingDataTableRowActions
+        row={row}
+        onDelete={onDelete}
+        onEdit={onEdit}
+      />
     ),
   },
 ];

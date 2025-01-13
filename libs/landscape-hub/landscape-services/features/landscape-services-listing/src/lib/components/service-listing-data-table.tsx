@@ -29,12 +29,15 @@ import { ServiceDto } from '@landscape/api';
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  onDeleteForAll: (service: ServiceDto) => void;
+  arrServicesToDelete: ServiceDto[];
+  setArrServicesToDelete: (arrServices: ServiceDto[]) => void;
 }
 
 export function ServiceListingDataTable<TData, TValue>({
   columns,
-  data, onDeleteForAll
+  data,
+  arrServicesToDelete,
+  setArrServicesToDelete,
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -116,7 +119,11 @@ export function ServiceListingDataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} onDeleteForAll={onDeleteForAll}/>
+      <DataTablePagination
+        table={table}
+        arrServicesToDelete={arrServicesToDelete}
+        setArrServicesToDelete={setArrServicesToDelete}
+      />
     </div>
   );
 }
