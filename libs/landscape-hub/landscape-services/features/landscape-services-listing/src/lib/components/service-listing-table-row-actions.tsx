@@ -12,9 +12,7 @@ import {
 // import { serviceSchema } from '../data/schema';
 // type Service = z.infer<typeof serviceSchema>;
 
-import {
-  GenericAlertDialog,
-} from '@landscape/landscape-services-ui';
+import { GenericAlertDialog } from '@landscape/landscape-services-ui';
 import React from 'react';
 import { ServiceDto } from '@landscape/api';
 // import { z } from 'zod';
@@ -53,8 +51,6 @@ export function ServiceListingDataTableRowActions<TData>({
         <DropdownMenuItem onSelect={() => onEdit(service)}>
           Edit
         </DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuSeparator />
 
