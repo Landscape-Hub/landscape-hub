@@ -51,9 +51,6 @@ export function ServiceListingDataTableRowActions<TData>({
         <DropdownMenuItem onSelect={() => onEdit(service)}>
           Edit
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuSeparator />
-
         <GenericAlertDialog
           onAction={onDelete}
           data={service}
@@ -73,7 +70,6 @@ export function ServiceListingDataTableRowActions<TData>({
             }}
           >
             Delete
-            <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
           </DropdownMenuItem>
         </GenericAlertDialog>
       </DropdownMenuContent>
