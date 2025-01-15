@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -65,9 +65,9 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
         duration: 5000,
         className: 'bg-green-50 border-green-200',
       });
-    } catch (error) {
+    } catch (error: any) {
       toast.error(`Failed to update service`, {
-        description: 'Error while updating service',
+        description: `Error while updating service ${error.message}`,
         position: 'top-right',
       });
     }
@@ -256,21 +256,22 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
             </FormItem>
           )}
         />
-        <div className="mt-auto flex space-x-5 h-full">
+        <div className="flex gap-2 justify-end">
           {/* Submit Button */}
+
+          <Button variant="outline"
+                  onClick={()=> closeSheet()}
+
+          >
+            Cancel
+          </Button>
           <Button
             type="submit"
-            className="bg-blue-500 text-white hover:bg-blue-600"
+
           >
             Submit
           </Button>
 
-          <Button
-            onClick={()=> closeSheet()}
-            className="bg-blue-500 text-white hover:bg-blue-600"
-          >
-            Cancel
-          </Button>
 
         </div>
       </form>
