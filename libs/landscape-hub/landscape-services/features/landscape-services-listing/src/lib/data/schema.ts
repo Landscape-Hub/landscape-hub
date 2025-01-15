@@ -18,3 +18,28 @@ export const serviceSchema = z.object({
 });
 
 export type Service = z.infer<typeof serviceSchema>;
+
+/*
+* const formSchema = z.object({
+  basePrice: z.string().refine((val) => {
+    const num = parseFloat(val);
+    return !isNaN(num) && num > 0;
+  }, {
+    message: "Base price must be a positive number",
+  }),
+  costEstimate: z.string().refine((val) => {
+    const num = parseFloat(val);
+    return !isNaN(num) && num > 0;
+  }, {
+    message: "Cost estimate must be a positive number",
+  }),
+}).refine((data) => {
+  const basePrice = parseFloat(data.basePrice);
+  const costEstimate = parseFloat(data.costEstimate);
+  return basePrice > costEstimate;
+}, {
+  message: "Base price must be greater than cost estimate",
+  path: ["basePrice"],
+});
+*
+* */
