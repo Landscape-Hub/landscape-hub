@@ -37,6 +37,7 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
   const form = useForm<z.infer<typeof serviceSchema>>({
     resolver: zodResolver(serviceSchema),
     defaultValues: service || {},
+    mode: 'onBlur'
   });
 
   const { handleUpdateService, handleCreateService } = useServicePresenter();
