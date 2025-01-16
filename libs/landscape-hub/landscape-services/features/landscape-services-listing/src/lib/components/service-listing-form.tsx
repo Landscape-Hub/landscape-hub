@@ -259,21 +259,16 @@ const ServiceListingForm: React.FC<ServiceFormProps> = ({
         />
         <div className="flex gap-2 justify-end">
           {/* Submit Button */}
-
           <Button variant="outline"
                   onClick={()=> closeSheet()}
-
           >
             Cancel
           </Button>
           <Button
             type="submit"
-
           >
             Submit
           </Button>
-
-
         </div>
       </form>
     </Form>

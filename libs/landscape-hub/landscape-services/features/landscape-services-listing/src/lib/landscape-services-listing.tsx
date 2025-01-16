@@ -24,6 +24,9 @@ export function LandscapeServicesListing() {
   const [isEditing, setIsEditing] = useState(false);
   const [openAlertDialog, setOpenAlertDialog] = React.useState(false);
 
+  // New trigger state to force the sheet open when needed
+  const [openSheetTrigger, setOpenSheetTrigger] = useState(false);
+
   const onDelete = async (service: ServiceDto) => {
     const serviceName = service?.serviceName ?? 'Unknown Service';
 
@@ -71,7 +74,7 @@ export function LandscapeServicesListing() {
         <MemoizedServiceForm service={selectedService} isEditing={isEditing} />
       );
     }
-  }, [selectedService, isEditing]);
+  }, [selectedService, isEditing, openSheetTrigger]);
 
   // memoize the serviceListing form component
   // makes sure that the form logic is contained; and it only updates when service or isEditing changes.
@@ -108,6 +111,7 @@ export function LandscapeServicesListing() {
   const onEdit = (service: ServiceDto) => {
     handleSelectService(service);
     setIsEditing(true);
+    setOpenSheetTrigger(prev => !prev);  // Toggle trigger to open the sheet
   };
 
   const columnsArr = useMemo(
