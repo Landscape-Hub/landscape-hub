@@ -1,0 +1,9 @@
+{
+  "name": "landscape-services-ui",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/landscape-hub/landscape-services/shared/landscape-services-ui/src",
+  "projectType": "library",
+  "tags": ["scope:shared", "type:ui"],
+  "// targets": "to see all targets run: nx show project landscape-services-ui --web",
+  "targets": {}
+}

@@ -1,0 +1,9 @@
+{
+  "name": "landscape-services-presenters",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/landscape-hub/landscape-services/presenters/landscape-services-presenters/src",
+  "projectType": "library",
+  "tags": ["scope:landscape-hub","type:ui"],
+  "// targets": "to see all targets run: nx show project landscape-services-presenters --web",
+  "targets": {}
+}

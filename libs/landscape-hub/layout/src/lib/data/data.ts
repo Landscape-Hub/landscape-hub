@@ -101,6 +101,11 @@ const data = {
       icon: Wrench,
       items: [
         {
+          title: 'Services Listing',
+          url: '/services',
+          icon: Leaf,
+        },
+        {
           title: 'Lawn Care',
           url: '#',
           icon: Leaf,
