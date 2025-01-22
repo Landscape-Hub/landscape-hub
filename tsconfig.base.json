@@ -22,6 +22,7 @@
       "@landscape/client-management-ui": [
         "libs/landscape-hub/client-management/shared/client-management-ui/src/index.ts"
       ],
+      "@landscape/contexts": ["libs/shared/contexts/src/index.ts"],
       "@landscape/dashboard-models": [
         "libs/landscape-hub/dashboard/shared/dashboard-models/src/index.ts"
       ],
