@@ -267,6 +267,12 @@ export type ServiceDto = {
   id: number;
   serviceName?: string | null;
   description?: string | null;
+  categoryId?: number | null;
+  categoryName?: string | null;
+  basePrice?: number | null;
+  costEstimate?: number | null;
+  profitMarginTarget?: number;
+  pricingModel?: string | null;
 };
 
 export type ServiceForCreationDto = {
